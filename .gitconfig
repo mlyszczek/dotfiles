@@ -3,10 +3,12 @@
 	email = michal.lyszczek@bofc.pl
 
 [diff]
-	tool = kdiff3
+	tool = vimdiff
 
 [core]
 	editor = vim
+	trustctime = false
+	preloadindex = true
 
 [web]
 	browser = chromium
@@ -30,3 +32,21 @@
 	added = green bold
 	changed = yellow bold
 	untracked = red bold
+
+[mergetool]
+	trustExitCode = true
+
+[gitreview]
+	remote = origin
+
+[format]
+	signoff = true
+
+[blame]
+	coloring = highlightRecent
+
+[init]
+	defaultBranch = master
+
+[pull]
+	ff = only

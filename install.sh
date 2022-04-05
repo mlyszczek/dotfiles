@@ -20,6 +20,7 @@ files="
 .termcap
 .dialogrc
 .zsh-autosuggestions
+.gitconfig
 "
 
 # https://git-scm.com/docs/git-pull#_bugs
