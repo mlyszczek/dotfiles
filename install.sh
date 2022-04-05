@@ -4,8 +4,7 @@ cd "$(dirname "${0}")"
 script_dir="$(pwd)"
 
 # list of dsts to create links to, paths should be in relative to ${HOME}
-files=".Xmodmap
-.Xresources
+files="
 .dircolors
 .tmux
 .tmux-nest.conf
