@@ -1,0 +1,2 @@
+Preamble.vba: call delete('/home/mlyszczek/.vim/autoload/Preamble.vim')|call delete('/home/mlyszczek/.vim/doc/Preamble.txt')
+IndentTab-1.10.vmb: call delete('/home/lm-/.vim/autoload/IndentTab.vim')|call delete('/home/lm-/.vim/autoload/IndentTab/CommentPrefix.vim')|call delete('/home/lm-/.vim/autoload/IndentTab/Info.vim')|call delete('/home/lm-/.vim/autoload/IndentTab/SuperTabIntegration.vim')|call delete('/home/lm-/.vim/autoload/IndentTab/Syntax.vim')|call delete('/home/lm-/.vim/plugin/IndentTab.vim')|call delete('/home/lm-/.vim/doc/IndentTab.txt')

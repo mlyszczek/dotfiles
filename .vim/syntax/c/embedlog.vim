@@ -1,0 +1,71 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
+if !exists('c_no_posix_type')
+    syntax keyword cPosixConstant ELF
+    syntax keyword cPosixConstant ELA
+    syntax keyword cPosixConstant ELC
+    syntax keyword cPosixConstant ELE
+    syntax keyword cPosixConstant ELW
+    syntax keyword cPosixConstant ELN
+    syntax keyword cPosixConstant ELI
+    syntax keyword cPosixConstant ELD
+    syntax keyword cPosixConstant OELF
+    syntax keyword cPosixConstant OELA
+    syntax keyword cPosixConstant OELC
+    syntax keyword cPosixConstant OELE
+    syntax keyword cPosixConstant OELW
+    syntax keyword cPosixConstant OELN
+    syntax keyword cPosixConstant OELI
+    syntax keyword cPosixConstant OELD
+    syntax keyword cPosixConstant EL_OUT_NONE
+    syntax keyword cPosixConstant EL_OUT_STDERR
+    syntax keyword cPosixConstant EL_OUT_STDOUT
+    syntax keyword cPosixConstant EL_OUT_SYSLOG
+    syntax keyword cPosixConstant EL_OUT_FILE
+    syntax keyword cPosixConstant EL_OUT_NET
+    syntax keyword cPosixConstant EL_OUT_TTY
+    syntax keyword cPosixConstant EL_OUT_CUSTOM
+    syntax keyword cPosixConstant EL_OUT_ALL
+    syntax keyword cPosixConstant EL_FATAL
+    syntax keyword cPosixConstant EL_ALERT
+    syntax keyword cPosixConstant EL_CRIT
+    syntax keyword cPosixConstant EL_ERROR
+    syntax keyword cPosixConstant EL_WARN
+    syntax keyword cPosixConstant EL_NOTICE
+    syntax keyword cPosixConstant EL_INFO
+    syntax keyword cPosixConstant EL_DBG
+    syntax keyword cPosixConstant EL_LEVEL
+    syntax keyword cPosixConstant EL_OUT
+    syntax keyword cPosixConstant EL_COLORS
+    syntax keyword cPosixConstant EL_TS
+    syntax keyword cPosixConstant EL_TS_TM
+    syntax keyword cPosixConstant EL_TS_FRACT
+    syntax keyword cPosixConstant EL_PRINT_LEVEL
+    syntax keyword cPosixConstant EL_PRINT_NL
+    syntax keyword cPosixConstant EL_FINFO
+    syntax keyword cPosixConstant EL_THREAD_SAFE
+    syntax keyword cPosixConstant EL_FUNCINFO
+    syntax keyword cPosixConstant EL_CUSTOM_PUTS
+    syntax keyword cPosixConstant EL_TTY_DEV
+    syntax keyword cPosixConstant EL_PREFIX
+    syntax keyword cPosixConstant EL_FPATH
+    syntax keyword cPosixConstant EL_FROTATE_NUMBER
+    syntax keyword cPosixConstant EL_FROTATE_SIZE
+    syntax keyword cPosixConstant EL_FSYNC_EVERY
+    syntax keyword cPosixConstant EL_FSYNC_LEVEL
+    syntax keyword cPosixConstant EL_TS_OFF
+    syntax keyword cPosixConstant EL_TS_SHORT
+    syntax keyword cPosixConstant EL_TS_LONG
+    syntax keyword cPosixConstant EL_TS_TM_TIME
+    syntax keyword cPosixConstant EL_TS_TM_CLOCK
+    syntax keyword cPosixConstant EL_TS_TM_REALTIME
+    syntax keyword cPosixConstant EL_TS_TM_MONOTONIC
+    syntax keyword cPosixConstant EL_TS_FRACT_OFF
+    syntax keyword cPosixConstant EL_TS_FRACT_MS
+    syntax keyword cPosixConstant EL_TS_FRACT_US
+    syntax keyword cPosixConstant EL_TS_FRACT_NS
+endif
+
+let &cpo = s:save_cpo
+unlet s:save_cpo

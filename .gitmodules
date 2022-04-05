@@ -1,0 +1,18 @@
+[submodule ".tmux/plugins/tmux-battery"]
+	path = .tmux/plugins/tmux-battery
+	url = https://git::@github.com/tmux-plugins/tmux-battery
+[submodule ".tmux/plugins/tmux-cpu"]
+	path = .tmux/plugins/tmux-cpu
+	url = https://git::@github.com/tmux-plugins/tmux-cpu
+[submodule ".tmux/plugins/tmux-current-pane-hostname"]
+	path = .tmux/plugins/tmux-current-pane-hostname
+	url = https://git::@github.com/soyuka/tmux-current-pane-hostname
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = https://git::@github.com/tmux-plugins/tmux-sensible
+[submodule ".powerlevel10k"]
+	path = .powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".zsh-autosuggestions"]
+	path = .zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
