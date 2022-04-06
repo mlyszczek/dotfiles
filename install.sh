@@ -33,7 +33,7 @@ for f in ${files}; do
 	dst="${HOME}/${f}"
 	src="${script_dir}/${f}"
 
-	echo "linking ${dst} -> ${src}"
+	printf "linking ${dst} -> ${src} "
 
 	if [ -f "${src}" ]; then
 		# we are linking to file
@@ -45,9 +45,10 @@ for f in ${files}; do
 		fi
 	fi
 
-	if [ -e "${dst}" ]; then
+	if [ -L "$dst" ]; then unlink "$dst"; fi
+	if [ -f "$dst" ]; then
 		ftype=$(stat --printf=%F "${dst}")
-		printf "${dst} (${ftype}) already exist, remove (type YES)? "
+		printf "(${ftype}) already exist, remove (type YES)? "
 		read choice
 		if [ "x${choice}" = "xYES" ]; then
 			if [ ! -L "${dst}" ] && [ -d "${dst}" ]; then
@@ -56,9 +57,10 @@ for f in ${files}; do
 				unlink "${dst}"
 			fi
 		else
-			echo "answer is not YES, not removing, ignoring file"
 			continue
 		fi
+	else
+		echo
 	fi
 
 	ln -s "${src}" "${dst}"
