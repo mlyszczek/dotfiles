@@ -19,6 +19,7 @@ else
 	count=$(cat $last_count_file)
 fi
 
+count=$(echo $count | bc)
 
 if [ "x${UNICODE_FONT}" = "x1" ]; then
 	picto="📫"
