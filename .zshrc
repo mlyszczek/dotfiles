@@ -92,6 +92,7 @@ export XDG_RUNTIME_DIR=/tmp/xdg-runtime-dir.$(whoami)
 export PULSE_RUNTIME_PATH=$XDG_RUNTIME_DIR/pulse
 export BROWSER="/usr/bofc/bin/open -n"
 export XDG_CONFIG_HOME=${HOME}/.config
+export EDITOR=vim
 mkdir -p $XDG_RUNTIME_DIR
 chmod 700 $XDG_RUNTIME_DIR
 
