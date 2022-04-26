@@ -1,5 +1,8 @@
 #!/bin/sh
 
-git add $1
-git commit -m "update $1"
+for f in $*; do
+	git add $f
+	git commit -m "update $f"
+done
+
 git push --all
