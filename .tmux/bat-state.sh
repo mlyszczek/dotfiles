@@ -13,7 +13,7 @@ fi
 acpi="$(acpi -b | grep -v "unavailable" | head -n1)"
 msg="$(echo "${acpi}" |  cut -f3- -d' ')"
 percent="$(echo "${acpi}" | cut -f4 -d' ' | cut -f1 -d%)"
-left="($(echo "${acpi}" | grep -Po "\d{2}:\d{2}:\d{2}"))"
+left="(⏳️$(echo "${acpi}" | grep -Po "\d{2}:\d{2}:\d{2}"))"
 
 if [ ${percent} -gt 80 ]; then
 	color="#[fg=green]"
