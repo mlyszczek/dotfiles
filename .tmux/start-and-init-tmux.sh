@@ -110,9 +110,13 @@ start_gertty()
 start_lgilab()
 {
 	tmux new-window -t master:7 -n "lgilab"
-		tmux send-keys "tcn lgilab" C-m
-		sleep 0.5
-		tmux send-keys "ssh lgilab" C-m
+		tmux send-keys "ssh lgilab -t tmux attach -t lgilab" C-m
+}
+
+start_hex()
+{
+	tmux new-window -t master:8 -n "hex"
+		tmux send-keys "ssh hex -t tmux attach -t hex" C-m
 }
 
 start_taskwarrior()
@@ -120,6 +124,13 @@ start_taskwarrior()
 	tmux new-window -t master:10 -n "taskwarrior"
 		tmux send-keys "tmux-task -i" C-m
 }
+
+start_taskwarrior_todo()
+{
+	tmux new-window -t master:11 -n "taskwarrior"
+		tmux send-keys "TASKRC=/home/lm-/.taskrc-kurwinet tmux-task -i" C-m
+}
+
 
 if [ x$1 = x ]; then
 	start_main
@@ -130,18 +141,22 @@ if [ x$1 = x ]; then
 	start_rack
 	start_gertty
 	start_lgilab
+	start_hex
 	start_taskwarrior
+	start_taskwarrior_todo
 else
 	case $1 in
-		main)        start_main ;;
-		readers)     start_readers ;;
-		root)        start_root ;;
-		bofc)        start_bofc ;;
-		red)         start_red ;;
-		rack)        start_rack ;;
-		gertty)      start_gertty ;;
-		lgilab)      start_lgilab ;;
-		taskwarrior) start_taskwarrior ;;
+		main)             start_main ;;
+		readers)          start_readers ;;
+		root)             start_root ;;
+		bofc)             start_bofc ;;
+		red)              start_red ;;
+		rack)             start_rack ;;
+		gertty)           start_gertty ;;
+		lgilab)           start_lgilab ;;
+		hex)              start_hex ;;
+		taskwarrior)      start_taskwarrior ;;
+		taskwarrior-todo) start_taskwarrior_todo ;;
 		*) echo unknown module ;;
 	esac
 fi
