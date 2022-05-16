@@ -5,22 +5,12 @@ if [ $(hostname) != "marchewa" ]; then
 	exit 0
 fi
 
-t_left="/apc/estimated-runtime"
-t_on_bat="/apc/status/on-battery"
-t_bat_volt="/apc/battery/voltage"
-t_bat_charge="/apc/battery/charge"
-mqtt_host=kurwik
+left="$(cat /tmp/tmux-mqtt-cache/ups-estimated-runtime)"
+on_bat="$(cat /tmp/tmux-mqtt-cache/ups-on-battery)"
+bat_volt="$(cat /tmp/tmux-mqtt-cache/ups-voltage)"
+bat_charge="$(cat /tmp/tmux-mqtt-cache/ups-charge)"
 
-bat_charge=$(mosquitto_sub -C 1 -h $mqtt_host -F '%p' -t "$t_bat_charge")
 bat_charge=$(echo "$bat_charge / 1" | bc)
-if [ $bat_charge = 100 ]; then
-	printf "ok"
-	exit 0
-fi
-
-on_bat=$(mosquitto_sub -C 1 -h $mqtt_host -F '%p' -t "$t_on_bat")
-left=$(mosquitto_sub -C 1 -h $mqtt_host -F '%p' -t "$t_left")
-bat_volt=$(mosquitto_sub -C 1 -h $mqtt_host -F '%p' -t "$t_bat_volt")
 
 levels=""
 l=$((bat_charge / 10))
@@ -33,4 +23,4 @@ fi
 stopwatch=⏳️
 #left=$(printf "%dmin" "$left")
 left=$(echo "$left / 1" | sed 's/://' | bc)min
-printf "ups: $charge$level$bat_charge%%($stopwatch$left) $bat_volt[V]"
+printf "🔋 $charge$level$bat_charge%%($stopwatch$left) $bat_volt[V]"
