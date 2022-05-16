@@ -5,10 +5,6 @@ if [ $(hostname) != "marchewa" ]; then
 	exit 0
 fi
 
-temp_topic="/ac/office/temp"
-mqtt_host=kurwik
-
-temp=$(mosquitto_sub -C 1 -h $mqtt_host -F '%p' -t "$temp_topic")
-
+temp=$(cat /tmp/tmux-mqtt-cache/office-temp)
 icon=🏢
 printf "$icon$temp°C\n"
