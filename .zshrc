@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 if type dircolors >/dev/null; then
@@ -17,21 +17,6 @@ else
 	[ -z "$TERM" ] && export TERM=rxvt-256color
 	[ -n "$TMUX" ] && export TERM=tmux-256color
 fi
-
-enable_omw_aws_mfa()
-{
-	# perform mfa on aws
-	omw_aws_mfa=/usr/local/bin/aws-cli-auth-mfa.sh
-	if [ ! -f $omw_aws_mfa ]; then echo "$omw_aws_mfa no such file"; return 1; fi
-
-	source $omw_aws_mfa
-	echo "Getting TOTP code"
-	code=$(oathtool -b --totp 'L4WMDELSFNFMP6TYFHCLXBCL422VVB76UJH6OAIGJTGE6GTIPERMBH2YOZKRRRMC')
-	echo "Getting MFA passwords for AWS"
-	omw-mfa-login $code
-	echo "Enabling MFA for AWS"
-	omw-mfa-enable
-}
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -169,13 +154,13 @@ function tan() { TMUX= tmux -L${1} attach -t ${1} }
 
 git-cherry-pick-to()
 {
-    what=${1}
-    to=${2}
+	what=${1}
+	to=${2}
 
-    current=$(git rev-parse --abbrev-ref HEAD)
-    git checkout ${to}
-    git cherry-pick ${what}
-    git checkout ${current}
+	current=$(git rev-parse --abbrev-ref HEAD)
+	git checkout ${to}
+	git cherry-pick ${what}
+	git checkout ${current}
 }
 
 # cdfile allows to cd into file's directory, examples will
@@ -226,34 +211,34 @@ cdfile()
 # from sourcing users dangerous rc when snooping in users dirs :>
 sourcecd ()
 {
-    cdfile ${@} || return ${?}
+	cdfile ${@} || return ${?}
 
-    me=$(whoami)
-    cwd=$(pwd)
+	me=$(whoami)
+	cwd=$(pwd)
 
-    while true; do
-        rc=${cwd}/.rc
+	while true; do
+		rc=${cwd}/.rc
 
-        # source only file that we can read and belongs to us
-        if [ -r "${rc}" ] && [ $(stat -c %U "${rc}") = ${me} ]; then
-            source "${rc}"
-            return 0
-        fi
+		# source only file that we can read and belongs to us
+		if [ -r "${rc}" ] && [ $(stat -c %U "${rc}") = ${me} ]; then
+			source "${rc}"
+			return 0
+		fi
 
-        if [ "${cwd}" = "/" ]; then
-            # if we searched all dirs and still didn't find .zshrc,
-            # load default source file, to make sure environment is
-            # in default state when cding from /home/lm-/projects/asdf
-            # to let's say /etc. Also do not source default ~/.zshrc
-            # file which can be big and take a lot of time to source,
-            # this may be good when starting new shell but imagine
-            # waiting every time you cd.
-            [ -r ~/.rc-default ] && source ~/.rc-default
-            return 0
-        fi
+		if [ "${cwd}" = "/" ]; then
+			# if we searched all dirs and still didn't find .zshrc,
+			# load default source file, to make sure environment is
+			# in default state when cding from /home/lm-/projects/asdf
+			# to let's say /etc. Also do not source default ~/.zshrc
+			# file which can be big and take a lot of time to source,
+			# this may be good when starting new shell but imagine
+			# waiting every time you cd.
+			[ -r ~/.rc-default ] && source ~/.rc-default
+			return 0
+		fi
 
-        cwd=$(dirname "${cwd}")
-    done
+		cwd=$(dirname "${cwd}")
+	done
 }
 alias cd=sourcecd
 
