@@ -26,6 +26,8 @@ Plug 'easymotion/vim-easymotion'      " extended 'f' command
 "Plug 'guyzmo/notmuch-abook'           " address book for email autocomplete
 Plug 'chrisbra/Recover.vim'           " remove .swp when no changes are detected
 Plug 'inkarkat/vim-ingo-library'      " deps for smart tabs
+Plug 'embear/vim-localvimrc'          " per project .vimrc
+
 " smart tabs (IndentTab) installed manuall in ~/.vim/plugin
 
 " after installing YCM, go into ~/.vim/plugged/YouComleteMe and call
@@ -474,6 +476,7 @@ endfunc
 "
 "" ==========================================================================
 
+let g:localvimrc_whitelist='/home/lm-/projekty/[a-z]+/.*'
 
 " remove trailing spaces from c files upon save
 autocmd BufWritePre *.c %s/\s\+$//e
@@ -489,3 +492,13 @@ set secure
 
 " enable smart tabs globally
 autocmd VimEnter * call IndentTab#Set(1, 1)
+
+
+
+"" ==========================================================================
+"                     / ___// __ \ / / / // ___// ___// _ \
+"                    (__  )/ /_/ // /_/ // /   / /__ /  __/
+"                   /____/ \____/ \__,_//_/    \___/ \___/
+"" ==========================================================================
+
+runtime whitelist.vim
