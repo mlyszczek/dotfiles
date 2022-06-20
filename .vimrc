@@ -27,6 +27,7 @@ Plug 'easymotion/vim-easymotion'      " extended 'f' command
 Plug 'chrisbra/Recover.vim'           " remove .swp when no changes are detected
 Plug 'inkarkat/vim-ingo-library'      " deps for smart tabs
 Plug 'embear/vim-localvimrc'          " per project .vimrc
+Plug 'tibabit/vim-templates'          " templating for new files
 
 " smart tabs (IndentTab) installed manuall in ~/.vim/plugin
 
@@ -205,6 +206,8 @@ nnoremap <leader>C :call CowsayComment("
 nnoremap <leader>E :lopen<CR>
 nnoremap <leader>H :call HexMe()<CR>
 
+nnoremap <leader>nf :call PrintNuttxFunction("
+
 imap <leader><leader> <Esc>
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -225,8 +228,6 @@ noremap <C-l> <C-w>l
 "" ==========================================================================
 "   Prints opening part of comment based on language
 "" ==========================================================================
-
-
 function PrintCommentOpen()
 	if (&ft=='c' || &ft=='h')
 		read !echo "/* =========================================================================="
@@ -245,8 +246,6 @@ endfunction
 "" ==========================================================================
 "   Prints closing part of comment based on language
 "" ==========================================================================
-
-
 function PrintCommentClose()
 	if (&ft=='c' || &ft=='h')
 		read !echo "   ========================================================================== */"
@@ -265,8 +264,6 @@ endfunction
 "" ==========================================================================
 "   Prints opening part of short comment based on language
 "" ==========================================================================
-
-
 function PrintCommentOpenShort()
 	if (&ft=='c' || &ft=='h')
 		read !echo "    /* =================================================================="
@@ -285,8 +282,6 @@ endfunction
 "" ==========================================================================
 "   Prints closing part of short comment based on language
 "" ==========================================================================
-
-
 function PrintCommentCloseShort()
 	if (&ft=='c' || &ft=='h')
 		read !echo "       ================================================================== */"
@@ -303,10 +298,28 @@ endfunction
 
 
 "" ==========================================================================
+"   Prints comment for function for Nuttx project
+"" ==========================================================================
+function PrintNuttxFunction(f)
+	let n=" * Name: " . a:f
+	read !echo "/****************************************************************************"
+	put =n
+	read !echo " *"
+	read !echo " * Description:"
+	read !echo " *"
+	read !echo " * Input Parameters:"
+	read !echo " *"
+	read !echo " * Returned Value:"
+	read !echo " *"
+	read !echo " * Assumptions/Limitations:"
+	read !echo " *"
+	read !echo " ****************************************************************************/"
+endfunction
+
+
+"" ==========================================================================
 "   Returns comment character based on language.
 "" ==========================================================================
-
-
 function GetCommentChar()
 	if (&ft=='c' || &ft=='h')
 		return ''
@@ -325,8 +338,6 @@ endfunction
 "" ==========================================================================
 "   creates nice figlet comment - just like that "functions" above
 "" ==========================================================================
-
-
 function FigletComment(comment)
 	call PrintCommentOpen()
 	let l:cc = GetCommentChar()
@@ -341,8 +352,6 @@ endfunction
 "   same as FigletComment but with shorter delimiters, for embeding in
 "   functions.
 "" ==========================================================================
-
-
 function FigletCommentShort(comment)
 	call PrintCommentOpenShort()
 	let l:cc = "    " . GetCommentChar()
@@ -356,8 +365,6 @@ endfunction
 "" ==========================================================================
 "   creates random cowsay with passed string, it's stupid, but cool
 "" ==========================================================================
-
-
 function CowsayComment(comment)
 	call PrintCommentOpen()
 	let l:cc = GetCommentChar()
@@ -372,8 +379,6 @@ endfunction
 "   if string is longer than 'width' value, function will process text so
 "   it fits into defined line width. Works on marked text in visual mode.
 "" ==========================================================================
-
-
 function EqText(width)
 	let &textwidth=a:width
 	execute "normal gvgq"
@@ -384,8 +389,6 @@ endfunction
 "" ==========================================================================
 "   Same as EqText but for 50 characters wide
 "" ==========================================================================
-
-
 function EqualizeNarrow()
 	call EqText(50)
 endfunction
@@ -393,8 +396,6 @@ endfunction
 "" ==========================================================================
 "   Same as EqText but for 67 characters wide
 "" ==========================================================================
-
-
 function Equalize()
 	call EqText(67)
 endfunction
@@ -403,8 +404,6 @@ endfunction
 "" ==========================================================================
 "   Same as EqText but for 76 characters wide
 "" ==========================================================================
-
-
 function EqualizeWide()
 	call EqText(76)
 endfunction
@@ -413,8 +412,6 @@ endfunction
 "" ==========================================================================
 "   Current file is converted into hex view
 "" ==========================================================================
-
-
 function HexMe()
 	set binary
 	set noeol
@@ -432,8 +429,6 @@ endfunction
 "   Changes spaces to tabs, assumes 4spaces = 1tab, works up to max 10
 "   indents, quite crude function, but works:)
 "" ==========================================================================
-
-
 function Retab()
 	let l:i = 10
 
