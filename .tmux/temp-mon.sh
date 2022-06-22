@@ -1,14 +1,7 @@
 #!/bin/sh
 
-if [ $(hostname) != "marchewa" ]; then
-	printf ""
-	exit 0
-fi
-
-if ! type acpi >/dev/null 2>&1; then
-	printf ""
-	exit 0
-fi
+. ${HOME}/.tmux/utils.sh
+run_only_on_hostname marchewa
 
 acpi="$(acpi -t | grep "Thermal 0")"
 temp=$(echo "$acpi" | cut -f4 -d\ | cut -f1 -d.)
@@ -21,21 +14,17 @@ else
 	color="#[fg=red]"
 fi
 
-if [ "x${UNICODE_FONT}" = "x1" ]; then
-	levels=""
-	if [ $temp -lt 40 ]; then
-		icon=
-	elif [ $temp -lt 45 ]; then
-		icon=
-	elif [ $temp -lt 50 ]; then
-		icon=
-	elif [ $temp -lt 60 ]; then
-		icon=
-	else
-		icon=
-	fi
-
-	printf "$color$icon$temp°C\n"
+levels=""
+if [ $temp -lt 40 ]; then
+	picto=
+elif [ $temp -lt 45 ]; then
+	picto=
+elif [ $temp -lt 50 ]; then
+	picto=
+elif [ $temp -lt 60 ]; then
+	picto=
 else
-	printf "${color}%s*C" "$temp"
+	picto=
 fi
+
+printf "$color$picto$temp°C\n"
