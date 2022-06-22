@@ -1,15 +1,9 @@
 #!/bin/sh
 
-if [ $(hostname) != marchewa ]; then
-	printf ""
-	exit 0
-fi
+. ${HOME}/.tmux/utils.sh
+run_only_on_hostname marchewa
 
-if ! type mpc >/dev/null 2>&1; then
-	exit 0
-fi
-
-m="$(mpc -h kurwik)"
+m="$(mpc -h celyn)"
 
 track=$(echo "${m}" | sed -n 1p)
 info=$(echo "${m}" | sed -n 2p)
@@ -21,25 +15,25 @@ levels=" ▁▂▃▄▅▆▇█"
 l=$((volume / (100/9)))
 level="${levels:$l:1}"
 if [ $volume -eq 0 ]; then
-	icon_volume=ﱝ
+	picto_volume=ﱝ
 elif [ $volume -gt 0 ]; then
-	icon_volume=
+	picto_volume=
 elif [ $volume -gt 50 ]; then
-	icon_volume=
+	picto_volume=
 fi
 
 
 if [ -z "${info}" ]
-then icon="◼"
-    echo "[${icon}] :: ${volume}"
+then picto="◼"
+    echo "[${picto}] :: ${volume}"
     exit 0
 fi
 
 if echo "${info}" | grep playing > /dev/null
 then
-    icon="▶"
+    picto="▶"
 else
-    icon=""
+    picto=""
 fi
 
-echo "$icon_volume$volume [${icon}]🎵${track}🎵"
+echo "$picto_volume$volume [${picto}]🎵${track}🎵"
