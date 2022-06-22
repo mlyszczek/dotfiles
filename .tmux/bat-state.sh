@@ -1,12 +1,9 @@
 #!/bin/sh
 
-if [ $(hostname) != "marchewa" ]; then
-	printf ""
-	exit 0
-fi
+. ${HOME}/.tmux/utils.sh
+run_only_on_hostname marchewa
 
 if ! type acpi >/dev/null 2>&1; then
-	printf ""
 	exit 0
 fi
 
@@ -23,20 +20,16 @@ else
 	color="#[fg=red]"
 fi
 
-if [ "x${UNICODE_FONT}" = "x1" ]; then
-	levels=""
-	connected=""
-	if echo "${msg}" | grep -P "Full|Charging" >/dev/null; then
-		connected="🔌"
-		if [ ${percent} -gt 90 ]; then
-			left=
-		fi
+levels=""
+connected=""
+if echo "${msg}" | grep -P "Full|Charging" >/dev/null; then
+	connected="🔌"
+	if [ ${percent} -gt 90 ]; then
+		left=
 	fi
-
-	l=$((percent / 10))
-	echo $l > /tmp/asdf
-	level="${levels:$l:1}"
-	printf "${color}${connected}${level}${percent}%%${left}\n"
-else
-	printf "${color}%s" "${msg}"
 fi
+
+l=$((percent / 10))
+echo $l > /tmp/asdf
+level="${levels:$l:1}"
+printf "${color}${connected}${level}${percent}%%${left}\n"
