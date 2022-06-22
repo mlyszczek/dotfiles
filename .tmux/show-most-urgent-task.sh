@@ -1,18 +1,8 @@
 #!/bin/sh
 
 . ${HOME}/.tmux/utils.sh
-
-if [ $(hostname) != marchewa ]; then
-	printf ""
-	exit 0
-fi
-
-if [ "x${UNICODE_FONT}" = "x1" ]; then
-	picto="📝"
-else
-	picto="task"
-fi
-
+run_only_on_hostname marchewa
+picto="📝"
 
 t=$(task rc.verbose: limit:1 murg +OVERDUE)
 if [ "$t" ]; then
