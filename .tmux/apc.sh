@@ -1,9 +1,7 @@
 #!/bin/sh
 
-if [ $(hostname) != "marchewa" ]; then
-	printf ""
-	exit 0
-fi
+. ${HOME}/.tmux/utils.sh
+run_only_on_hostname marchewa
 
 left="$(cat /tmp/tmux-mqtt-cache/ups-estimated-runtime)"
 on_bat="$(cat /tmp/tmux-mqtt-cache/ups-on-battery)"
