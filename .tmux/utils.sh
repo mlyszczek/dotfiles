@@ -64,3 +64,10 @@ has_time_passed()
 	echo $now > $last_run_file
 	return 0
 }
+
+run_only_on_hostname()
+{
+	if [ x$(hostname) != x$1 ]; then
+		exit 0
+	fi
+}
