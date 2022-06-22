@@ -1,12 +1,8 @@
 #!/bin/sh
 
 . ${HOME}/.tmux/utils.sh
-
-if [ $(hostname) != marchewa ]; then
-	printf ""
-	exit 0
-fi
-
+run_only_on_hostname marchewa
+picto="📧"
 MAIL="/home/lm-/.maildir"
 
 gov_unread=$(ls -1 "$MAIL/gov/new" | wc -l)
@@ -22,12 +18,6 @@ if [ -z "$unread_list" ]; then
 	unread_total=0
 else
 	unread_total=$(echo "$unread_list" | wc -l)
-fi
-
-if [ "x${UNICODE_FONT}" = "x1" ]; then
-	picto="📧"
-else
-	picto="mail"
 fi
 
 if [ ${unread_total} -eq 0 ]; then
