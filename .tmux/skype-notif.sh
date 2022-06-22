@@ -1,12 +1,7 @@
 #!/bin/sh
 
 . ${HOME}/.tmux/utils.sh
-
-
-if [ $(hostname) != marchewa ]; then
-	printf ""
-	exit 0
-fi
+run_only_on_hostname marchewa
 
 # run once each 15 seconds to not hog cpu too much
 #last_count_file=/tmp/skype-notif-last-count
@@ -19,11 +14,7 @@ count=$(cat /tmp/google-chrome-xwininfo | grep "Skype -" | \
 #	count=$(cat $last_count_file)
 #fi
 
-if [ "x${UNICODE_FONT}" = "x1" ]; then
-	picto="💬"
-else
-	picto="skype"
-fi
+picto="💬"
 
 if [ -z "${count}" ] || ! [ ${count} -eq ${count} ] || [ ${count} -eq 0 ]; then
 	printf "#[fg=green]${picto}"
