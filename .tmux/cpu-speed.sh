@@ -1,3 +1,4 @@
 #!/bin/sh
 
-cat /proc/cpuinfo | grep "cpu MHz" | head -n1 | awk '{print $4}' | cut -f1 -d.
+grep "cpu MHz" /proc/cpuinfo | awk -vncpu=$(nproc) \
+	'{s+=$4} END {printf " " s/ncpu "MHz *** "}'

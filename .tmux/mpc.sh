@@ -36,4 +36,4 @@ else
     picto=""
 fi
 
-echo "$picto_volume$volume [${picto}]🎵${track}🎵"
+printf "*** $picto_volume$volume [${picto}]🎵${track}🎵 *** "

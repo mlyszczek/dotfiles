@@ -148,9 +148,9 @@ if [ x$1 = x ]; then
 	start_gertty
 	start_lgilab
 	start_hex
-	start_alti
+	#start_alti
 	start_taskwarrior
-	start_taskwarrior_todo
+	#start_taskwarrior_todo
 else
 	eval start_$1
 #	case $1 in

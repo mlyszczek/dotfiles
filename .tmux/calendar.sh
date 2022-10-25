@@ -11,8 +11,8 @@ next_time=$(calcurse --filter-type cal -Q --days 2 | grep -B1 "$next_text" |
 		head -n1 | sed 's/ - //')
 
 if [ -z "${next}" ]; then
-	printf "#[fg=green]${picto}#[fg=default](none)"
+	printf "$CGREEN${picto}$CRESET(none) *** "
 	exit 0
 fi
 
-printf "#[fg=red]${picto}#[fg=default](${next_time} ${next})"
+printf "$CRED${picto}$CRESET(${next_time} ${next}) *** "

@@ -16,4 +16,4 @@ if [ $speed -eq 0 ]; then
 	picto=ﴛ
 fi
 
-printf "$color$picto$speed\n"
+printf "$color$picto$speed"

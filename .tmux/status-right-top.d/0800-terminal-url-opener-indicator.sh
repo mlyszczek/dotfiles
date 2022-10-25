@@ -1,0 +1,1 @@
+../terminal-url-opener-indicator.sh

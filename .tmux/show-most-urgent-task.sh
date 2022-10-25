@@ -6,7 +6,7 @@ picto="📝"
 
 t=$(task rc.verbose: limit:1 murg +OVERDUE)
 if [ "$t" ]; then
-	printf "#[fg=red]$picto[!!]$t"
+	printf "$CRED$picto[!!]$t$CRESET ***"
 	exit 0
 fi
 
@@ -14,9 +14,9 @@ t=$(task rc.verbose: limit:1 murg)
 time_u=$(echo $t | cut -f1 -d\ | grep -Eo "[a-z]" | head -n1)
 
 if [ x$time_u == xh ]; then
-	printf "#[fg=red]"
+	printf "$CRED"
 else
-	printf "#[fg=green]"
+	printf "$CGREEN"
 fi
 
 if [ x$time_u != xh -a x$time_u != xd ]; then
@@ -28,4 +28,4 @@ if [ x$time_u != xh -a x$time_u != xd ]; then
 fi
 
 
-printf "$picto[%s" "$(echo $t | sed -e 's/ /]/')"
+printf "$picto[%s ***" "$(echo $t | sed -e 's/ /]/')"

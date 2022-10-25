@@ -12,19 +12,22 @@ msg="$(echo "${acpi}" |  cut -f3- -d' ')"
 percent="$(echo "${acpi}" | cut -f4 -d' ' | cut -f1 -d%)"
 left="(⏳️$(echo "${acpi}" | grep -Po "\d{2}:\d{2}:\d{2}"))"
 
+# battery likes to go haywire and transit from 99 to 100 frequently
+if [ $percent -eq 99 ]; then percent=100; fi
+
 if [ ${percent} -gt 80 ]; then
-	color="#[fg=green]"
+	color=$CGREEN
 elif [ ${percent} -gt 30 ]; then
-	color="#[fg=yellow]"
+	color=$CYELLOW
 else
-	color="#[fg=red]"
+	color=$CRED
 fi
 
 levels=""
 connected=""
 if echo "${msg}" | grep -P "Full|Charging" >/dev/null; then
 	connected="🔌"
-	if [ ${percent} -gt 90 ]; then
+	if [ ${percent} -gt 98 ]; then
 		left=
 	fi
 fi
@@ -32,4 +35,4 @@ fi
 l=$((percent / 10))
 echo $l > /tmp/asdf
 level="${levels:$l:1}"
-printf "${color}${connected}${level}${percent}%%${left}\n"
+printf "$CGREEN *** ${color}${connected}${level}${percent}%%${left} "

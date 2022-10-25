@@ -5,7 +5,7 @@ run_only_on_hostname marchewa
 picto="🔗"
 
 if [ -e /tmp/terminal-url-opener-working ]; then
-	printf "#[fg=red]${picto}"
+	printf "$CRED${picto}"
 else
-	printf "#[fg=green]${picto}"
+	printf "$CGREEN${picto}"
 fi

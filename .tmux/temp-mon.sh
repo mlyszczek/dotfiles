@@ -7,11 +7,11 @@ acpi="$(acpi -t | grep "Thermal 0")"
 temp=$(echo "$acpi" | cut -f4 -d\ | cut -f1 -d.)
 
 if [ ${temp} -lt 45 ]; then
-	color="#[fg=green]"
+	color=$CGREEN
 elif [ ${temp} -lt 60 ]; then
-	color="#[fg=yellow]"
+	color=$CYELLOW
 else
-	color="#[fg=red]"
+	color=$CRED
 fi
 
 levels=""
@@ -27,4 +27,4 @@ else
 	picto=
 fi
 
-printf "$color$picto$temp°C\n"
+printf "$color$picto$temp°C "

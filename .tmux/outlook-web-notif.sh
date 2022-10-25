@@ -19,9 +19,9 @@ count=$(echo $count | bc)
 picto="📫"
 
 if [ -z "${count}" ] || ! [ ${count} -eq ${count} ] || [ ${count} -eq 0 ]; then
-	printf "#[fg=green]${picto}"
+	printf "$CGREEN${picto}"
 else
-	printf "#[fg=red]${picto}"
+	printf "$CRED${picto}"
 fi
 
 if value_increased unread-outlook ${count}; then

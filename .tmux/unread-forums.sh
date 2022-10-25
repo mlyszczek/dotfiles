@@ -12,7 +12,7 @@ else
 	unread_total=$(echo "$unread_list" | wc -l)
 fi
 if [ ${unread_total} -eq 0 ]; then
-	printf "#[fg=green]${picto}"
+	printf "$CGREEN${picto}"
 else
-	printf "#[fg=red]${picto}"
+	printf "$CRED${picto}"
 fi

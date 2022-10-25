@@ -21,4 +21,4 @@ fi
 stopwatch=⏳️
 #left=$(printf "%dmin" "$left")
 left=$(echo "$left / 1" | sed 's/://' | bc)min
-printf "🔋 $charge$level$bat_charge%%($stopwatch$left) $bat_volt[V]"
+printf "*** 🔋 $charge$level$bat_charge%%($stopwatch$left) $bat_volt[V] *** "

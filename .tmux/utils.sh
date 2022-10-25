@@ -1,5 +1,11 @@
 #!/bin/sh
 
+CRED="#[fg=red]"
+CGREEN="#[fg=green]"
+CYELLOW="#[fg=yellow]"
+CBLUE="#[fg=blue]"
+CRESET="#[fg=default]"
+
 notify_phone()
 {
 	sendxmpp -t -n lm-notif@kurwinet.pl

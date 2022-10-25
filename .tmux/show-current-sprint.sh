@@ -12,7 +12,7 @@ while read line; do
 	if [ $start_epoch -lt $now -a $now -lt $finish_epoch ]; then
 		left=$((finish_epoch - now))
 		strleft=$(date -u -d@$left +"%ed %H:%M:%S")
-		echo "$sr ($strleft)"
+		printf "*** $sr ($strleft) "
 		exit 0
 	fi
 done < <(cat ~/.calcurse/lgi-sr-apts)
