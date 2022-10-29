@@ -137,6 +137,33 @@ start_taskwarrior_todo()
 		tmux send-keys "TMUX_TASK_ID=todo TASKRC=/home/lm-/.taskrc-kurwinet tmux-task -i" C-m
 }
 
+start_gentoo_ssh()
+{
+	wname=gentoo-ssh
+	tmux new-window -t master:11 -n "$wname"
+		tmux send-keys "tcn $wname" C-m
+		sleep 0.5
+			tmux -L $wname splitw -h -t $wname:1
+			tmux -L $wname splitw -v -t $wname:1
+			tmux -L $wname select-pane -t$wname:1.0
+			tmux -L $wname splitw -v -t $wname:1
+			tmux -L $wname select-pane -t$wname:1.0
+			tmux -L $wname splitw -h -t $wname:1
+			tmux -L $wname select-pane -t$wname:1.2
+			tmux -L $wname splitw -h -t $wname:1
+			tmux -L $wname select-pane -t$wname:1.4
+			tmux -L $wname splitw -h -t $wname:1
+			tmux -L $wname select-pane -t$wname:1.6
+			tmux -L $wname splitw -h -t $wname:1
+
+			i=0
+			for ssh in marchewa kurwik angua hex ridcully celyn nobby colon; do
+				tmux -L $wname select-pane -t$wname:1.$i
+				tmux -L $wname select-pane -T ssh-$ssh -t $wname:1.$i
+				tmux send-keys "ssh $ssh" C-m
+				i=$((i + 1))
+			done
+}
 
 if [ x$1 = x ]; then
 	start_main

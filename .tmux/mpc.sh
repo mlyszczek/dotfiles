@@ -25,7 +25,7 @@ fi
 
 if [ -z "${info}" ]
 then picto="◼"
-    echo "[${picto}] :: ${volume}"
+    printf "*** $picto_volume$volume [$picto] *** "
     exit 0
 fi
 

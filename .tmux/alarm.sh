@@ -10,7 +10,7 @@ if [ $? -eq 0 ]; then
 fi
 
 if [ -z "${count}" ]; then
-	printf "$CGREEN$picto * "
+	printf "$CGREEN$picto$CRESET * "
 else
-	printf "$CRED$picto($count) * "
+	printf "$CRED$picto($count)$CRESET * "
 fi
