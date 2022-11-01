@@ -81,6 +81,7 @@
     #azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
     #gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     #google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    chroot
     context                 # user@hostname
     #nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
     #ranger                  # ranger shell (https://github.com/ranger/ranger)
@@ -106,6 +107,13 @@
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
   )
+
+  function prompt_chroot() {
+      if ! ischroot; then
+          . /etc/conf.d/hostname
+          p10k segment -f 1 -t "(chroot@$hostname)"
+      fi
+  }
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete
@@ -1404,7 +1412,10 @@
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
-    p10k segment -f 208 -i '⭐' -t 'hello, %n'
+	if ischroot; then
+		. /etc/conf.d/hostname
+		p10k segment -f 208 -t "real hostname: $hostname"
+	fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
