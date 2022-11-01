@@ -109,7 +109,7 @@
   )
 
   function prompt_chroot() {
-      if ! ischroot; then
+      if ischroot; then
           . /etc/conf.d/hostname
           p10k segment -f 1 -t "(chroot@$hostname)"
       fi
