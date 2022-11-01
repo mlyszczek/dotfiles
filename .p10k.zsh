@@ -110,8 +110,8 @@
 
   function prompt_chroot() {
       if ischroot; then
-          . /etc/conf.d/hostname
-          p10k segment -f 1 -t "(chroot@$hostname)"
+          [ -f /etc/chroot-name ] && . /etc/chroot-name
+          p10k segment -f 1 -t "(chroot@$chroot_name)"
       fi
   }
 
