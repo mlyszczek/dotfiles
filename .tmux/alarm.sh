@@ -4,13 +4,15 @@
 run_only_on_hostname marchewa
 picto="⏰"
 
-left=$(alarm --show)
-if [ $? -eq 0 ]; then
-	count=$left
+alarms=$(alarm --show)
+if [ $? -ne 0 ]; then
+	printf "$CGREEN$picto$CRESET * "
+	exit 0
 fi
 
-if [ -z "${count}" ]; then
-	printf "$CGREEN$picto$CRESET * "
-else
-	printf "$CRED$picto($count)$CRESET * "
-fi
+# remove tea alarm - it has dedicated bar
+alarms=$(echo "$alarms" | grep -v "tea")
+# remove new lines to show alarms in one line
+alarms=$(echo $alarms)
+
+printf "$CRED$picto$alarms$CRESET * "
