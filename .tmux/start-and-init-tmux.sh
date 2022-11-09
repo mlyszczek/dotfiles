@@ -15,7 +15,7 @@ start_readers()
 # tmux new-window -t master:1 -n "misc" <- already created by default
 	tmux send-keys "tcn readers" C-m
 	sleep 0.5
-			tmux send-keys "mutt" C-m
+			tmux send-keys "BROWSER=/usr/bofc/bin/net-browser mutt" C-m
 		tmux -L readers new-window -t readers:2 -n "asp"
 			tmux send-keys "mutt-aspi.net.pl" C-m
 		tmux -L readers new-window -t readers:3 -n "rss"
@@ -29,7 +29,7 @@ start_readers()
 	tmux splitw -h
 	tmux send-keys "ssh colon -t tmux attach -t 0" C-m
 	tmux splitw -v
-	tmux send-keys "ncmpcpp --host kurwik" C-m
+	tmux send-keys "ncmpcpp --host celyn" C-m
 }
 
 start_root()
