@@ -55,11 +55,14 @@ call plug#end()
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:ycm_auto_trigger=0                    " trigger YCM only on c-space
 let g:ycm_enable_diagnostic_signs=1         " draw gutter on the left
+let g:ycm_show_detailed_diag_in_popup=1     " show diagnostic popup
 let g:ycm_enable_diagnostic_highlighting=0  " but don't highlight clang warnings
 let g:ycm_always_populate_location_list=1   " create list of clang warnings
 " do not use <TAB> for this, as this will clash with smart tabs
 let g:ycm_key_list_select_completion   = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+"let g:ycm_log_level = 'debug'
+
 
 let g:ctab_enable_default_filetype_maps=1
 " nerd tree ignore file list
@@ -197,6 +200,7 @@ vnoremap <leader>e :call Equalize()<CR>
 nnoremap <leader>f :call FigletComment("
 nnoremap <leader>F :call FigletCommentShort("
 nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>nc :NERDTreeFind<CR>
 nnoremap <leader>o :BufExplorer<cr>
 noremap  <leader>t :call DeleteTrailingWS()<CR>
 vnoremap <leader>w :call EqualizeWide()<CR>
@@ -214,6 +218,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "" ==========================================================================
 "              ____                     __   _
