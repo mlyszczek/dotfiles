@@ -242,16 +242,20 @@ sourcecd ()
 }
 alias cd=sourcecd
 
-#export SOURCE_HIGHLIGHT_STYLE=/home/.../esc-solarized.style
-export LESSOPEN="| pygmentize -f terminal -O style=native -g %s"
-export LESS='-XR'
+less_color()
+{
+	LESSOPEN="| pygmentize -f terminal -O style=native -g %s" less $@
+}
+alias less-color=less_color
+
+export LESS='-XRj.5'
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_so=$'\e[1;4;41m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
 export MANPAGER="less -+X -is"
 
 if [ -r $HOME/.zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
