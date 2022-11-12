@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd $(dirname $0)
-git pull >/dev/null
+git pull -q
