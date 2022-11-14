@@ -28,6 +28,8 @@ Plug 'chrisbra/Recover.vim'           " remove .swp when no changes are detected
 Plug 'inkarkat/vim-ingo-library'      " deps for smart tabs
 Plug 'embear/vim-localvimrc'          " per project .vimrc
 Plug 'tibabit/vim-templates'          " templating for new files
+Plug 'aklt/plantuml-syntax'           " plantuml syntax
+
 
 " smart tabs (IndentTab) installed manuall in ~/.vim/plugin
 
