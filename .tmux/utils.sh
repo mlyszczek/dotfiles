@@ -38,9 +38,12 @@ value_increased()
 	key=$1
 	val=$2
 
-	cur_val=$(cat ${db}/${key} 2>/dev/null)
-	# update value
-	echo "${val}" > ${db}/${key}
+	cur_val=$(cat $db/$key 2>/dev/null)
+	echo $val > $db/$key
+
+	if [ -z "$cur_val" ]; then
+		return 1
+	fi
 
 	if [ $val -le $cur_val ]; then
 		# no change, or no increase in value return false
