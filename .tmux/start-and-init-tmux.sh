@@ -125,6 +125,12 @@ start_alti()
 		tmux send-keys "tcn alti" C-m
 }
 
+start_conc()
+{
+	tmux new-window -t master:9 -n "conc"
+		tmux send-keys "tcn conc" C-m
+}
+
 start_taskwarrior()
 {
 	tmux new-window -t master:10 -n "taskwarrior"
@@ -176,6 +182,7 @@ if [ x$1 = x ]; then
 	start_lgilab
 	start_hex
 	#start_alti
+	start_conc
 	start_taskwarrior
 	#start_taskwarrior_todo
 else
