@@ -94,18 +94,18 @@ autoload -U select-word-style
 select-word-style bash
 #export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>\/'
 
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+bindkey "$terminfo[kcuu1]" history-beginning-search-backward
+bindkey "$terminfo[kcud1]" history-beginning-search-forward
 
 # allow the use of the Home/End keys
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
+bindkey "$terminfo[khome]" beginning-of-line
+bindkey "$terminfo[kend]" end-of-line
 # map "page up" and "page down" to search history based on current cmdline
-bindkey "\e[5~" history-search-backward
-bindkey "\e[6~" history-search-forward
+bindkey "$terminfo[kpp]" history-search-backward
+bindkey "$terminfo[knp]" history-search-forward
 # allow the use of the Delete/Insert keys
-bindkey "\e[3~" delete-char
-bindkey "\e[2~" quoted-insert
+bindkey "$terminfo[kdch1]" delete-char
+bindkey "$terminfo[kich1]" quoted-insert
 
 [ $TERM = "rxvt" ] && bindkey "\e[8~" end-of-line
 
