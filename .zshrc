@@ -114,6 +114,11 @@ bindkey "\e[2~" quoted-insert
 alias ls='ls --color --group-directories-first'
 alias l='ls -lh --group-directories-first'
 alias lsa='ls -lha --group-directories-first'
+# oh god almighty, protect me from my own stupidity and do not
+# allow me to shoot myself in the dick
+alias rm='rm --one-file-system'
+# unless I feel lucky today
+alias rmrf='rm -rf'
 alias grep='grep --color=auto --exclude-dir=".svn" --exclude-dir=".git"'
 alias oegrep='grep --color=auto --exclude-dir="build-brcm97449svms-refboard" --exclude-dir="downloads" --exclude-dir="sstate-cache" -rIs'
 alias gitg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
