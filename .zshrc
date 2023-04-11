@@ -120,7 +120,7 @@ alias rm='rm --one-file-system'
 # unless I feel lucky today
 alias rmrf='rm -rf'
 alias grep='grep --color=auto --exclude-dir=".svn" --exclude-dir=".git"'
-alias oegrep='grep --color=auto --exclude-dir="build-brcm97449svms-refboard" --exclude-dir="downloads" --exclude-dir="sstate-cache" -rIs'
+alias oegrep='grep --color=auto --exclude-dir="build-*-refboard" --exclude-dir="downloads" --exclude-dir="sstate-cache" -rIs'
 alias gitg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gits='git status -s'
 alias gitc='git commit -s --verbose'
@@ -142,6 +142,8 @@ alias notify-phone='sendxmpp -t -n lm-notif@kurwinet.pl'
 alias mutt-aspi.net.pl='mutt -F ~/.muttrc.aspi.net.pl'
 alias mutt-rss='mutt -F ~/.muttrc.rss'
 alias youtube-viewer='youtube-viewer --order=viewCount --player=mpv'
+alias ccat='pygmentize -g'
+
 
 alias ts-nc="{ cat -; echo 'termsend'; } | nc termsend.pl 1337"
 alias tst-nc="nc termsend.pl 1338"
