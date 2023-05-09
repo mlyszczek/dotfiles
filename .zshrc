@@ -18,6 +18,13 @@ else
 	[ -n "$TMUX" ] && export TERM=tmux-256color
 fi
 
+# add path to $PATH envvar, but only when it does not already exist there
+add_path() {
+	if ! echo $PATH | grep $1 >/dev/null; then
+		export PATH="$1:$PATH"
+	fi
+}
+
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select=1
@@ -64,7 +71,6 @@ setopt HIST_VERIFY
 export UNICODE_FONT=1
 export NMON=cmdlkn
 export LD_LIBRARY_PATH="/usr/local/lib64"
-export PATH="/usr/bofc/bin:/home/lm-/.local/bin:$PATH:/usr/arm-nuttx-eabi/bin:/usr/local/bin:/home/lm-/.laptop-profiles"
 export QT_SELECT=5
 export XDG_CURRENT_DESKTOP=qt5ct
 export QT_QPA_PLATFORM_THEME=qt5ct
@@ -80,6 +86,12 @@ export XDG_CONFIG_HOME=${HOME}/.config
 export EDITOR=vim
 mkdir -p $XDG_RUNTIME_DIR
 chmod 700 $XDG_RUNTIME_DIR
+
+add_path /usr/bofc/bin
+add_path /home/lm-/.local/bin
+add_path /usr/arm-nuttx-eabi/bin
+add_path /usr/local/bin
+add_path /home/lm-/.laptop-profiles
 
 # keybinds
 
