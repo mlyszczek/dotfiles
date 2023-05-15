@@ -274,7 +274,7 @@ less_color()
 }
 alias less-color=less_color
 
-export LESS='-XRj.5'
+export LESS='-XRj.5 -x4'
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_so=$'\e[1;4;41m'
@@ -291,6 +291,8 @@ if [ -r $HOME/.zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 	ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 	source $HOME/.zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+tabs 4 &>/dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [ ! -f ~/.p10k.zsh ] || source ~/.p10k.zsh
