@@ -381,7 +381,7 @@ endfunction
 function CowsayComment(comment)
 	call PrintCommentOpen()
 	let l:cc = GetCommentChar()
-	let c = system("cowsay -W 60 -f $(ls /usr/share/cowsay-3.03/cows/ | shuf -n1) " . a:comment .
+	let c = system("cowsay -W 60 -f $(ls /usr/share/cowsay/cows/ | shuf -n1) " . a:comment .
 				\ " | sed 's/^/" . l:cc . "/g'")
 	put =c
 	call PrintCommentClose()
