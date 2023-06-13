@@ -16,6 +16,7 @@ files="
 .p10k.zsh
 .terminfo
 .config/mc
+.config/nvim
 .ssh/config
 .local/share/mc/skins/lm-.ini
 .termcap
