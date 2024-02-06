@@ -70,7 +70,7 @@ setopt HIST_VERIFY
 
 export UNICODE_FONT=1
 export NMON=cmdlkn
-export LD_LIBRARY_PATH="/usr/local/lib64"
+export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib"
 export QT_SELECT=5
 export XDG_CURRENT_DESKTOP=qt5ct
 export QT_QPA_PLATFORM_THEME=qt5ct
@@ -266,6 +266,27 @@ hex-to-bin() {
 	echo "print(str(bin($n))[2:].zfill(34))" | python |
 		cut -c3- | rev | sed 's/.\{4\}/& /g' | rev
 	echo "   28   24   20   16   12    8    4    0"
+}
+
+token_quote()
+{
+	local quoted=()
+	for token; do
+		quoted+=("$(printf '%q' "$token")")
+	done
+	printf '%s\n' "${quoted[*]}"
+}
+
+gdb-tmux()
+{
+	if ! test $GDB_TMUX_BIN; then
+		GDB_TMUX_BIN=gdb
+	fi
+	local id="$(tmux split-pane -hPF "#D" "tail -f /dev/null")"
+	tmux last-pane
+	local tty="$(tmux display-message -p -t "$id" '#{pane_tty}')"
+	$GDB_TMUX_BIN -iex "dashboard -output $tty" token_quote $@
+	tmux kill-pane -t "$id"
 }
 
 less_color()
