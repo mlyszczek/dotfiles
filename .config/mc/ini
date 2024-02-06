@@ -129,6 +129,8 @@ screen-256color=
 
 tmux-256color-italic=
 
+tmux-256color=
+
 [Panels]
 show_mini_info=true
 kilobyte_si=false
