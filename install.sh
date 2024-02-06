@@ -67,3 +67,7 @@ for f in ${files}; do
 
 	ln -s "${src}" "${dst}"
 done
+
+# we need to create undo directory for vim, otherwise undo won't work
+# after exiting vim
+mkdir -p ~/.vim/undo
