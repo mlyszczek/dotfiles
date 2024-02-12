@@ -261,6 +261,17 @@ sourcecd ()
 }
 alias cd=sourcecd
 
+python_venv() {
+	venvdir=./.venv
+	# activate venv when cd into a folder that contains $venvdir
+	[[ -d $venvdir ]] && source $venvdir/bin/activate > /dev/null 2>&1
+	# deactivate venv when cd into a folder that doesn't
+	[[ ! -d $venvdir ]] && deactivate > /dev/null 2>&1
+}
+
+autoload -U add-zsh-hook
+add-zsh-hook chpwd python_venv
+
 hex-to-bin() {
 	n=$1
 	echo "print(str(bin($n))[2:].zfill(34))" | python |
