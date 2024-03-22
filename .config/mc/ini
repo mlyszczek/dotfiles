@@ -173,7 +173,7 @@ ignore_dirs=
 complete=\\eOk
 
 [Panelize]
-Zmodyfikowane pliki git=git ls-files --modified
-Znajdź odrzuty po łataniu=find . -name \\*.rej -print
-Znajdź pliki *.orig po łataniu=find . -name \\*.orig -print
 Znajdź programy SUID i SGID=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
+Znajdź odrzuty po łataniu=find . -name \\*.rej -print
+Zmodyfikowane pliki git=git ls-files --modified
+Znajdź pliki *.orig po łataniu=find . -name \\*.orig -print
