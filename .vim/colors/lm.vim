@@ -4,7 +4,7 @@ hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let colors_name = "lm-"
+let colors_name = "lm"
 :hi clear Normal
 :hi SpecialKey      ctermfg=darkgrey
 :hi Statement       ctermfg=yellow
