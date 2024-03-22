@@ -9,7 +9,7 @@ if version > 580
  syntax reset
  endif
 endif
-let colors_name = "lm-"
+let colors_name = "lm"
 :hi clear Normal
 :hi SpecialKey ctermfg=darkgreen
 :hi Statement ctermfg=yellow
