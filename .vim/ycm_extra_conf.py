@@ -13,13 +13,18 @@ flags = [
 	'-I..',
 	'-Iinc',
 	'-Isrc',
-	'-Itst'
+	'-Itst',
 	'-I/usr/bofc/lib/',
 	'-I/usr/bofc/include/',
 	'-I/usr/local/lib/',
 	'-I/usr/local/include/',
 	'-I/usr/lib/',
 	'-I/usr/include/',
+	'-Iinclude',
+	'-I../../zephyr/include',
+	'-I../zephyr/include',
+	'-I./include',
+	'-Iinclude/zephyr',
 ]
 
 def Settings( **kwargs ):
