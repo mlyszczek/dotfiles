@@ -296,7 +296,7 @@ gdb-tmux()
 	local id="$(tmux split-pane -hPF "#D" "tail -f /dev/null")"
 	tmux last-pane
 	local tty="$(tmux display-message -p -t "$id" '#{pane_tty}')"
-	$GDB_TMUX_BIN -iex "dashboard -output $tty" $(token_quote $@)
+	$GDB_TMUX_BIN -iex "dashboard -output $tty" "$1" -ex "$2"
 	tmux kill-pane -t "$id"
 }
 
