@@ -69,6 +69,9 @@ let g:ycm_key_list_select_completion   = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 "let g:ycm_log_level = 'debug'
 
+let g:gitgutter_map_keys = 0
+
+let g:EasyMotion_keys='asdfgheruiqwoncvbxzmlkj'
 
 let g:ctab_enable_default_filetype_maps=1
 " nerd tree ignore file list
@@ -148,7 +151,7 @@ set hlsearch            "Turn on highlighting search text by default
 set hidden              "Keep hidden windows
 try
 	"set listchars=tab:\ ,trail:·    "Strings to use in 'list' mode.
-	set listchars=tab:▸―,nbsp:␣,trail:•,extends:»,precedes:«
+	set listchars=tab:▸,nbsp:␣,trail:•,extends:»,precedes:«
 catch /E474:/
 	"set listchars=tab:>-,trail:.    "Failsafe for non-unicode envs
 	set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
@@ -183,6 +186,11 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
+" enable tab autocomplete when opening file via ':e path/to/file'
+set wildmode=longest,list,full
+set wildmenu
+
+
 " highlight whitespaces
 ":highlight ExtraWhitespace ctermbg=red guibg=red
 ":match ExtraWhitespace /\s\+$/
@@ -203,14 +211,19 @@ set pastetoggle=<leader>p  " toggle betwen paste and nopaste
 
 nnoremap <leader>e :call Equalize()<CR>
 vnoremap <leader>e :call Equalize()<CR>
+nnoremap <leader>fd :call PrintFunctionDefinition("
 nnoremap <leader>f :call FigletComment("
-nnoremap <leader>F :call FigletCommentShort("
+nnoremap <leader>F :call FigletCommentSmol("
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nc :NERDTreeFind<CR>
 nnoremap <leader>o :BufExplorer<cr>
 noremap  <leader>t :call DeleteTrailingWS()<CR>
 vnoremap <leader>w :call EqualizeWide()<CR>
 vnoremap <leader>E :call EqualizeNarrow()<CR>
+map      <leader>l <Plug>(easymotion-lineforward)
+map      <leader>j <Plug>(easymotion-j)
+map      <leader>k <Plug>(easymotion-k)
+map      <leader>h <Plug>(easymotion-linebackward)
 
 nnoremap <leader>C :call CowsayComment("
 nnoremap <leader>E :lopen<CR>
@@ -354,7 +367,26 @@ endfunction
 function FigletComment(comment)
 	call PrintCommentOpen()
 	let l:cc = GetCommentChar()
-	let c = system("figlet -w78 -c -fslant -k " . a:comment .
+	let c = system("figlet -w78 -c -fpagga -k " . a:comment .
+				\ " | sed 's/^/" . l:cc . "/g'")
+	"let c = system("figlet -w78 -c -fslant -k " . a:comment .
+	"			\ " | sed 's/^/" . l:cc . "/g'")
+	put =c
+	call PrintCommentClose()
+endfunction
+
+function PrintFunctionDefinition(s)
+	let c = system("~/.vim/tools/print-function-def.sh \"" . a:s . "\"")
+	put =c
+endfunction
+
+"" ==========================================================================
+"   same as FigletComment but use smol font
+"" ==========================================================================
+function FigletCommentSmol(comment)
+	call PrintCommentOpen()
+	let l:cc = GetCommentChar()
+	let c = system("figlet -w78 -c -ffuture " . a:comment .
 				\ " | sed 's/^/" . l:cc . "/g'")
 	put =c
 	call PrintCommentClose()
@@ -368,8 +400,10 @@ endfunction
 function FigletCommentShort(comment)
 	call PrintCommentOpenShort()
 	let l:cc = "    " . GetCommentChar()
-	let c = system("figlet -w78 -c -fsmslant -k " . a:comment .
+	let c = system("figlet -w78 -c -W -fsmbraille  " . a:comment .
 				\ " | sed 's/^    /" . l:cc . "/g'")
+	"let c = system("figlet -w78 -c -fsmslant -k " . a:comment .
+	"			\ " | sed 's/^    /" . l:cc . "/g'")
 	put =c
 	call PrintCommentCloseShort()
 endfunction
