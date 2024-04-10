@@ -109,6 +109,7 @@
   )
 
   function prompt_chroot() {
+      if ! type ischroot >/dev/null; then return 0; fi
       if ischroot; then
           [ -f /etc/chroot-name ] && . /etc/chroot-name
           p10k segment -f 1 -t "(chroot@$chroot_name)"
