@@ -42,3 +42,14 @@ let colors_name = "lm"
 :hi DiffDelete      cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 :hi DiffChange      cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 :hi DiffText        cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+:hi doxygenComment ctermfg=LightRed guifg=LightRed
+:hi doxygenBrief cterm=bold ctermfg=Cyan ctermbg=black guifg=LightBlue gui=Bold,Italic
+:hi doxygenBody ctermfg=Cyan guifg=LightBlue
+:hi doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=Red guifg=firebrick3 gui=bold
+:hi doxygenBOther cterm=bold ctermfg=Magenta guifg=#aa50aa gui=bold
+:hi doxygenParam ctermfg=red guifg=LightGray
+:hi doxygenParamName cterm=italic ctermfg=magenta guifg=LightBlue gui=italic,bold
+:hi doxygenSpecialOnelineDesc cterm=bold ctermfg=LightCyan guifg=LightCyan gui=bold
+:hi doxygenSpecialHeading cterm=bold ctermfg=LightBlue guifg=LightBlue gui=bold
+:hi doxygenPrev ctermfg=LightGreen guifg=LightGreen
