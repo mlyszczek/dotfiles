@@ -134,7 +134,7 @@ alias rmrf='rm -rf'
 alias grep='grep --color=auto --exclude-dir=".svn" --exclude-dir=".git"'
 alias oegrep='grep --color=auto --exclude-dir="build-*-refboard" --exclude-dir="downloads" --exclude-dir="sstate-cache" -rIs'
 alias gitg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-alias gits='git status -s'
+alias gits='git status'
 alias gitc='git commit -s --verbose'
 alias gitt='git log --tags --simplify-by-decoration --pretty="format:%ci %d"'
 alias ta='tmux attach -t'
