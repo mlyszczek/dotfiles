@@ -1,5 +1,4 @@
 "" ==========================================================================
-"                     _                           __
 "             _   __ (_)____ ___          ____   / /__  __ ____ _
 "            | | / // // __ `__ \ ______ / __ \ / // / / // __ `/
 "            | |/ // // / / / / //_____// /_/ // // /_/ // /_/ /
@@ -49,7 +48,6 @@ call plug#end()
 
 
 "" ==========================================================================
-"                  _                                   ____ _
 "          _   __ (_)____ ___     _____ ____   ____   / __/(_)____ _
 "         | | / // // __ `__ \   / ___// __ \ / __ \ / /_ / // __ `/
 "         | |/ // // / / / / /  / /__ / /_/ // / / // __// // /_/ /
@@ -72,6 +70,9 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:gitgutter_map_keys = 0
 
 let g:EasyMotion_keys='asdfgheruiqwoncvbxzmlkj'
+
+let g:tmpl_author_name='Michał Łyszczek'
+let g:tmpl_author_email='michal.lyszczek@bofc.pl'
 
 let g:ctab_enable_default_filetype_maps=1
 " nerd tree ignore file list
@@ -123,6 +124,9 @@ let NERDTreeIgnore += ['^libtool$']
 
 let g:vimtex_view_method = 'zathura' " use zathura to view latex pdf
 let g:tex_flavor = "latex"           " enable latex extensions on tex files
+
+let g:doxygen_enhanced_color=1
+let g:load_doxygen_syntax=1
 
 colorscheme lm          " my color scheme
 
@@ -197,12 +201,10 @@ set wildmenu
 
 
 "" ==========================================================================
-"                   __                  __                __
 "            _____ / /_   ____   _____ / /_ _____ __  __ / /_ _____
 "           / ___// __ \ / __ \ / ___// __// ___// / / // __// ___/
 "          (__  )/ / / // /_/ // /   / /_ / /__ / /_/ // /_ (__  )
 "         /____//_/ /_/ \____//_/    \__/ \___/ \__,_/ \__//____/
-"
 "" ==========================================================================
 
 
@@ -242,12 +244,10 @@ nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "" ==========================================================================
-"              ____                     __   _
 "             / __/__  __ ____   _____ / /_ (_)____   ____   _____
 "            / /_ / / / // __ \ / ___// __// // __ \ / __ \ / ___/
 "           / __// /_/ // / / // /__ / /_ / // /_/ // / / /(__  )
 "          /_/   \__,_//_/ /_/ \___/ \__//_/ \____//_/ /_//____/
-"
 "" ==========================================================================
 
 
@@ -255,7 +255,7 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "   Prints opening part of comment based on language
 "" ==========================================================================
 function PrintCommentOpen()
-	if (&ft=='c' || &ft=='h')
+	if (&ft=='c' || &ft=='h' || &ft=='c.doxygen')
 		read !echo "/* =========================================================================="
 	endif
 
@@ -266,6 +266,10 @@ function PrintCommentOpen()
 	if (&ft=='vim')
 		read !echo "\"\" =========================================================================="
 	endif
+
+	if (&ft=='lua')
+		read !echo "-- =========================================================================="
+	endif
 endfunction
 
 
@@ -273,8 +277,8 @@ endfunction
 "   Prints closing part of comment based on language
 "" ==========================================================================
 function PrintCommentClose()
-	if (&ft=='c' || &ft=='h')
-		read !echo "   ========================================================================== */"
+	if (&ft=='c' || &ft=='h' || &ft=='c.doxygen')
+		read !echo " * ========================================================================== */"
 	endif
 
 	if (&ft=='sh' || &ft=='python')
@@ -284,6 +288,10 @@ function PrintCommentClose()
 	if (&ft=='vim')
 		read !echo "\"\" =========================================================================="
 	endif
+
+	if (&ft=='lua')
+		read !echo "-- =========================================================================="
+	endif
 endfunction
 
 
@@ -291,7 +299,7 @@ endfunction
 "   Prints opening part of short comment based on language
 "" ==========================================================================
 function PrintCommentOpenShort()
-	if (&ft=='c' || &ft=='h')
+	if (&ft=='c' || &ft=='h' || &ft=='c.doxygen')
 		read !echo "    /* =================================================================="
 	endif
 
@@ -302,6 +310,10 @@ function PrintCommentOpenShort()
 	if (&ft=='vim')
 		read !echo "    \"\" =================================================================="
 	endif
+
+	if (&ft=='lua')
+		read !echo "    -- =================================================================="
+	endif
 endfunction
 
 
@@ -309,8 +321,8 @@ endfunction
 "   Prints closing part of short comment based on language
 "" ==========================================================================
 function PrintCommentCloseShort()
-	if (&ft=='c' || &ft=='h')
-		read !echo "       ================================================================== */"
+	if (&ft=='c' || &ft=='h' || &ft=='c.doxygen')
+		read !echo " *     ================================================================== */"
 	endif
 
 	if (&ft=='sh' || &ft=='python')
@@ -319,6 +331,10 @@ function PrintCommentCloseShort()
 
 	if (&ft=='vim')
 		read !echo "    \"\" =================================================================="
+	endif
+
+	if (&ft=='lua')
+		read !echo "    -- =================================================================="
 	endif
 endfunction
 
@@ -347,8 +363,8 @@ endfunction
 "   Returns comment character based on language.
 "" ==========================================================================
 function GetCommentChar()
-	if (&ft=='c' || &ft=='h')
-		return ''
+	if (&ft=='c' || &ft=='h' || &ft=='c.doxygen')
+		return ' *'
 	endif
 
 	if (&ft=='sh' || &ft=='python')
@@ -357,6 +373,10 @@ function GetCommentChar()
 
 	if (&ft=='vim')
 		return '\"'
+	endif
+
+	if (&ft=='lua')
+		return '--'
 	endif
 endfunction
 
@@ -376,8 +396,24 @@ function FigletComment(comment)
 endfunction
 
 function PrintFunctionDefinition(s)
-	let c = system("~/.vim/tools/print-function-def.sh \"" . a:s . "\"")
-	put =c
+	let l:line=getline('.')
+	let l:a=l:line
+	let l:src="line"
+	if (len(a:s) != 0)
+		let l:a=a:s
+		let l:src="arg"
+	endif
+
+	if (g:comment_style=="doxygen")
+		if (&ft=='lua')
+			let c = system("~/.vim/tools/print-function-def-doxygen.lua.sh \"" . l:src . " " . l:a . "\"")
+		else
+			let c = system("~/.vim/tools/print-function-def-doxygen.sh \"" . l:src . " " . l:a . "\"")
+		endif
+	else
+		let c = system("~/.vim/tools/print-function-def.sh \"" . l:src . " " . l:a . "\"")
+	endif
+	put! =c
 endfunction
 
 "" ==========================================================================
@@ -427,9 +463,10 @@ endfunction
 "   it fits into defined line width. Works on marked text in visual mode.
 "" ==========================================================================
 function EqText(width)
+	let wsave=&textwidth
 	let &textwidth=a:width
 	execute "normal gvgq"
-	set textwidth=80
+	let &textwidth=wsave
 endfunction
 
 
@@ -510,12 +547,10 @@ endfunc
 
 
 "" ==========================================================================
-"                          __                               __
 "           ____ _ __  __ / /_ ____   _____ ____ ___   ____/ /_____
 "          / __ `// / / // __// __ \ / ___// __ `__ \ / __  // ___/
 "         / /_/ // /_/ // /_ / /_/ // /__ / / / / / // /_/ /(__  )
 "         \__,_/ \__,_/ \__/ \____/ \___//_/ /_/ /_/ \__,_//____/
-"
 "" ==========================================================================
 
 let g:localvimrc_whitelist='/home/lm-/projekty/[a-z]+/.*'
@@ -535,6 +570,8 @@ set secure
 " enable smart tabs globally
 autocmd VimEnter * call IndentTab#Set(1, 1)
 
+" treat .h files as C, and not cpp, fuck cpp
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 
 
 "" ==========================================================================
