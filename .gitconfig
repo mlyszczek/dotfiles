@@ -1,3 +1,13 @@
+[include]
+	path = ~/.config/lazygit/delta.colors.gitconfig
+
+[delta]
+	#features = villsau
+	#features = chameleon
+	#features = mellow-barbet
+	#features = arctic-fox
+	features = arctic-fox-mine
+
 [user]
 	name = Michał Łyszczek
 	email = michal.lyszczek@bofc.pl
