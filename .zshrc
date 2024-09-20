@@ -71,6 +71,7 @@ setopt HIST_VERIFY
 export UNICODE_FONT=1
 export NMON=cmdlkn
 export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib"
+export PATH="/usr/bofc/bin:/home/lm-/.local/bin:$PATH:/usr/arm-nuttx-eabi/bin:/usr/local/bin:/home/lm-/.laptop-profiles"
 export QT_SELECT=5
 export XDG_CURRENT_DESKTOP=qt5ct
 export QT_QPA_PLATFORM_THEME=qt5ct
