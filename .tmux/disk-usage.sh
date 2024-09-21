@@ -14,7 +14,6 @@ f="$(df -h | grep -P "/$|/home$|/var/backup$")"
 
 r="$(echo "$f" | grep "/$")"
 h="$(echo "$f" | grep "/home$")"
-b="$(echo "$f" | grep "/var/backup$")"
 
 # in case home and/or backup is not mounted
 # then it means it's on rootfs
@@ -28,4 +27,3 @@ esac
 
 usage "$r" ""
 usage "$h" " "
-usage "$b" " "
