@@ -1,0 +1,30 @@
+CompileFlags:
+    Add:
+        - '-DHAVE_CONFIG_H=1'
+        - '-D_GNU_SOURCE'
+        - '-I.'
+        - '-I..'
+        - '-I/usr/bofc/include/'
+        - '-I/usr/bofc/lib/'
+        - '-I/usr/include/'
+        - '-I/usr/lib/'
+        - '-I/usr/local/include/'
+        - '-I/usr/local/lib/'
+        - '-Icontrib'
+        - '-I./contrib'
+        - '-I./contrib/quadtree'
+        - '-I../../contrib'
+        - '-Iinc'
+        - '-Iinclude'
+        - '-Iinclude/zephyr'
+        - '-Isrc'
+        - '-Isrc/contrib'
+        - '-Itst'
+        - '-Wall'
+        - '-Wextra'
+        - '-std=c2x'
+        - '-xc'
+
+Diagnostics:
+    MissingIncludes: None
+    UnusedIncludes: None
