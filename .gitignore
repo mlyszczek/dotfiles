@@ -1,0 +1,5 @@
+.config/mc/mc.ext.ini
+.db
+.vim/spell/
+.vim/whitelist.vim
+*.swo
