@@ -96,9 +96,7 @@ start_red()
 start_rack()
 {
 	tmux new-window -t master:5 -n "rack"
-		tmux send-keys "ssh kurwik -t tmux attach -t kurwik" C-m
-		tmux splitw -h
-		tmux send-keys "ssh root@detrytus -t tmux -u attach -t detrytus" C-m
+		tmux send-keys "ssh kurwik -t tmux attach -t 0" C-m
 }
 
 start_gertty()
@@ -116,7 +114,7 @@ start_lgilab()
 start_hex()
 {
 	tmux new-window -t master:8 -n "hex"
-		tmux send-keys "ssh hex -t tmux attach -t hex" C-m
+		tmux send-keys "ssh hex -t tmux attach -t 0" C-m
 }
 
 start_alti()
@@ -128,7 +126,7 @@ start_alti()
 start_conc()
 {
 	tmux new-window -t master:9 -n "conc"
-		tmux send-keys "tcn conc" C-m
+		tmux send-keys "ssh sramzes.conclusive.pl -t tmux attach -t 0" C-m
 }
 
 start_taskwarrior()
@@ -176,10 +174,10 @@ if [ x$1 = x ]; then
 	start_readers
 	start_root
 	start_bofc
-	start_red
+#	start_red
 	start_rack
-	start_gertty
-	start_lgilab
+#	start_gertty
+#	start_lgilab
 	start_hex
 	#start_alti
 	start_conc
