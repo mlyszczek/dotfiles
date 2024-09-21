@@ -10,13 +10,8 @@ if type dircolors >/dev/null; then
 	eval `dircolors -b ~/.dircolors`
 fi
 
-if [ $(hostname) = "marchewa" ]; then
-	[ -z "$TERM" ] && export TERM=rxvt-256color-italic
-	[ -n "$TMUX" ] && export TERM=tmux-256color-italic
-else
-	[ -z "$TERM" ] && export TERM=rxvt-256color
-	[ -n "$TMUX" ] && export TERM=tmux-256color
-fi
+[ -z "$TERM" ] && export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=tmux-256color
 
 # add path to $PATH envvar, but only when it does not already exist there
 add_path() {
