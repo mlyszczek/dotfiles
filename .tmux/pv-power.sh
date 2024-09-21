@@ -11,4 +11,4 @@ if [ $((v1 > v2)) = 1 ]; then max=$v1; else max=$v2; fi
 if [ $((v3 > max)) = 1 ]; then max=$v3; fi
 
 picto=⚡
-printf "*** $picto%sW %sV " "$power" "$max"
+printf "*** $picto%dW %.1fV " "$power" "$max"
