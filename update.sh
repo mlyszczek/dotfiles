@@ -4,9 +4,11 @@ cd $(dirname $0)
 git pull -q
 
 cd .powerlevel10k
-git pull -q
+git checkout origin/master
+git pull -q origin master
 cd ..
 
 cd .zsh-autosuggestions
-git pull -q
+git checkout origin/master
+git pull -q origin master
 cd ..
