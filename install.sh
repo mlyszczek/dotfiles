@@ -17,6 +17,9 @@ files="
 .terminfo
 .config/mc
 .config/nvim
+.config/clangd
+.config/lazygit
+.config/lsd
 .ssh/config
 .local/share/mc/skins/lm-.ini
 .termcap
