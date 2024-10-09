@@ -1,3 +1,22 @@
+local border = {
+	{"╭", "FloatBorder"},
+	{"─", "FloatBorder"},
+	{"╮", "FloatBorder"},
+	{"│", "FloatBorder"},
+	{"╯", "FloatBorder"},
+	{"─", "FloatBorder"},
+	{"╰", "FloatBorder"},
+	{"│", "FloatBorder"},
+}
+
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or border
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 return { -- Main LSP Configuration
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -12,6 +31,9 @@ return { -- Main LSP Configuration
 
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
+	},
+	opts = {
+		indent = { enable = true},
 	},
 	config = function()
 		-- Brief aside: **What is LSP?**
