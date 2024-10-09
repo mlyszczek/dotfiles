@@ -31,6 +31,24 @@ return { -- Collection of various small independent plugins/modules
 			return "%2l:%-2v"
 		end
 
+		require('mini.align').setup({
+			mappings = {
+				start = 'ga',
+				start_with_preview = '<leader>fa',
+			},
+		})
+
+		require('mini.bracketed').setup()
+		require('mini.jump').setup()
+		require('mini.sessions').setup()
+		require('mini.splitjoin').setup({
+			mappings = {
+				toggle = '<leader>fs',
+				split = '',
+				join = '',
+			},
+		})
+
 		-- ... and there is more!
 		--  Check out: https://github.com/echasnovski/mini.nvim
 	end,
