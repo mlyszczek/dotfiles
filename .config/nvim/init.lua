@@ -9,7 +9,7 @@ vim.opt.ignorecase = true -- case insensitive search (for thos stupid camels)
 vim.opt.inccommand = "split" -- preview substitutions live, as you type!
 vim.opt.list = true -- print some non-visible characters
 vim.opt.listchars = { tab = "▸", trail = "•", nbsp = "␣" }
-vim.opt.mouse = "n" -- enable mouse, might be faster for resizing
+vim.opt.mouse = "" -- mouse is more trouble than it's worth
 vim.opt.number = true -- show line number to the left
 vim.opt.relativenumber = true -- show relative line number to the current one
 vim.opt.scrolloff = 10-- always show this n of lines when scrolling
@@ -31,10 +31,12 @@ vim.opt.autoindent = true -- when <enter> is hit, stay in the same column
 vim.opt.wrap = false -- don't wrap long lines, just trim them
 vim.opt.textwidth = 80 -- lines should not be longer than 80ch
 vim.opt.colorcolumn = "+1,+41" -- lines
-vim.opt.cindent = true --
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
 vim.cmd("let g:doxygen_enhanced_color=1")
+
+vim.opt.cindent = true -- enable c code auto indent
+vim.opt.cinoptions = ":0,=s,l1,(s,U1,m1"
 
 -- I just cannot get this 24bit working in nvim. Terminal clearly displays
 -- nice 24bit colors, but nvim simply cannot.
@@ -53,8 +55,17 @@ vim.cmd("let g:tmpl_author_email='michal.lyszczek@bofc.pl'")
 -- ==========================================================================
 -- Set <space> as the leader key
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+-- movement remap for colemak layout
+vim.keymap.set("n", "h", "<Right>")
+vim.keymap.set("n", "j", "<Down>")
+vim.keymap.set("n", "k", "<Left>")
+vim.keymap.set("n", "l", "<Up>")
+vim.keymap.set("v", "h", "<Right>")
+vim.keymap.set("v", "j", "<Down>")
+vim.keymap.set("v", "k", "<Left>")
+vim.keymap.set("v", "l", "<Up>")
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -64,18 +75,19 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-Left>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-Right>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("i", "<leader><leader>", "<ESC>")
 vim.keymap.set("n", "<leader>fe", function() vim.cmd(":NvimTreeToggle") end, { desc = "show file explorer" })
+vim.keymap.set("n", "<leader>fc", function() vim.cmd(":NvimTreeFindFile") end, { desc = "focus on currently opened file" })
 
 vim.keymap.set("n", "gh", function() vim.cmd(":ClangdSwitchSourceHeader") end, { desc = "toggle header c file" })
 vim.keymap.set("n", "<leader>mj", function() vim.cmd(":make -j") end, { desc = "build project with -j" })
 vim.keymap.set("n", "<leader>mc", function() vim.cmd(":make -j1") end, { desc = "build project with -j1" })
 vim.keymap.set("n", "<leader>mp", function() vim.cmd(":make clean"); vim.cmd(":make -j") end, { desc = "make clean and then build" })
+vim.keymap.set('n', '<leader>ft', [[:%s/\s\+$//e<cr>]])
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -124,35 +136,9 @@ vim.keymap.set("v", "<leader>el", function() eq_text(76) end, { desc = "equalize
 vim.keymap.set("v", "<leader>en", function() eq_text(67) end, { desc = "equalize text to 67 width" })
 vim.keymap.set("v", "<leader>es", function() eq_text(50) end, { desc = "equalize text to 50 width" })
 
-local function smart_tab()
-	local spc = "                                                          "
-	local line = vim.api.nvim_get_current_line()
-	local _, column = unpack(vim.api.nvim_win_get_cursor(0))
-	local before_cursor = string.sub(line, 0, column)
-	local match = string.match(before_cursor, "^\t*$")
-	if (match ~= nil and string.len(match) > 0) or column == 0 then
-		vim.api.nvim_put({"\t"}, "", false, true)
-	else
-		-- local virtcolumn = vim.fn.virtcol(".")
-		-- local nspc = virtcolumn % vim.opt.tabstop:get()
-		-- nspc = 1 + vim.opt.tabstop:get() - nspc
-		-- vim.api.nvim_put({tostring(virtcolumn) .. tostring(nspc)}, "", false, true)
-
-		local sts = vim.opt.tabstop:get()
-		local sp = vim.fn.virtcol(".") % sts
-		local nspc = (1 + sts - sp) % sts
-		if nspc == 0 then nspc = sts end
-		local s = string.sub(spc, 0, nspc)
-		vim.api.nvim_put({s}, "", false, true)
-	end
-	--vim.api.nvim_put({match}, "", false, false)
-    --let sts=exists("b:insidetabs")?(b:insidetabs):((&sts==0)?&sw:&sts)
-    --let sp=(virtcol('.') % sts)
-    --return strpart("                                     ",0,1+sts-sp)
-end
-vim.keymap.set("i", "<S-TAB>", "<TAB>")
-vim.keymap.set("i", "<TAB>", smart_tab)
-
+-- local smart_tab = require("user.plugins.smart-tab")
+-- vim.keymap.set("i", "<S-TAB>", "<TAB>")
+-- vim.keymap.set("i", "<TAB>", smart_tab.smart_tab)
 --  To check the current status of your plugins, run
 --    :Lazy
 --
