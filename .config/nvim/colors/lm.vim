@@ -60,5 +60,8 @@ let colors_name = "lm"
 :hi @keyword.doxygen ctermfg=red 
 :hi @variable.doxygen cterm=italic ctermfg=magenta
 
+:hi TelescopePreviewLine ctermbg=magenta
+:hi TelescopeSelection ctermbg=magenta
+
 
 :hi LspReferenceText  ctermbg=232
