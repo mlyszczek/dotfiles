@@ -3,3 +3,4 @@
 .vim/spell/
 .vim/whitelist.vim
 *.swo
+.config/nvim/lazy-lock.json
