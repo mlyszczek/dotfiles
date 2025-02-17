@@ -325,6 +325,7 @@ tabs 4 &>/dev/null
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [ ! -f ~/.p10k.zsh ] || source ~/.p10k.zsh
 [ ! -f ~/.powerlevel10k/powerlevel10k.zsh-theme ] || source ~/.powerlevel10k/powerlevel10k.zsh-theme
+[ ! -f ~/.zsh-fzf-history-search/zsh-fzf-history-search.zsh ] || source ~/.zsh-fzf-history-search/zsh-fzf-history-search.zsh
 # source machine custom file, could be used to override some aliases
 # (like ls --colors which will not work on bsd) or do system specific
 # stuff.
