@@ -13,6 +13,7 @@ files="
 .vimrc
 .zshrc
 .powerlevel10k
+.zsh-fzf-history-search
 .p10k.zsh
 .terminfo
 .config/mc
