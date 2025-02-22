@@ -47,7 +47,7 @@ unsetopt correct
 unsetopt autocd
 unsetopt beep
 
-umask 026
+umask 022
 
 HISTFILE=~/.histfile
 HISTSIZE=10000000
