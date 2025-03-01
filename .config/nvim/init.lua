@@ -1,8 +1,9 @@
--- ==========================================================================
---                             ┏━┓┏━┓╺┳╸╻┏━┓┏┓╻┏━┓
---                             ┃ ┃┣━┛ ┃ ┃┃ ┃┃┗┫┗━┓
---                             ┗━┛╹   ╹ ╹┗━┛╹ ╹┗━┛
--- ==========================================================================
+---- ========================================================================
+--                         ░█▀█░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
+--                         ░█░█░█▀▀░░█░░░█░░█░█░█░█░▀▀█
+--                         ░▀▀▀░▀░░░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
+---- ========================================================================
+
 vim.g.have_nerd_font = true -- some candy for the eyes
 vim.opt.cursorline = true -- show which line your cursor is on
 vim.opt.ignorecase = true -- case insensitive search (for thos stupid camels)
@@ -47,47 +48,10 @@ vim.cmd("set notermguicolors")
 vim.cmd("let g:tmpl_author_name='Michał Łyszczek'")
 vim.cmd("let g:tmpl_author_email='michal.lyszczek@bofc.pl'")
 
-
--- ==========================================================================
---                              ╻┏ ┏━╸╻ ╻┏┳┓┏━┓┏━┓
---                              ┣┻┓┣╸ ┗┳┛┃┃┃┣━┫┣━┛
---                              ╹ ╹┗━╸ ╹ ╹ ╹╹ ╹╹
--- ==========================================================================
 -- Set <space> as the leader key
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
--- movement remap for colemak layout
-vim.keymap.set("n", "h", "<Right>")
-vim.keymap.set("n", "j", "<Down>")
-vim.keymap.set("n", "k", "<Left>")
-vim.keymap.set("n", "l", "<Up>")
-vim.keymap.set("v", "h", "<Right>")
-vim.keymap.set("v", "j", "<Down>")
-vim.keymap.set("v", "k", "<Left>")
-vim.keymap.set("v", "l", "<Up>")
-
--- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
-vim.keymap.set("n", "<C-Left>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-Right>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-
-vim.keymap.set("n", "<leader>fe", function() vim.cmd(":NvimTreeToggle") end, { desc = "show file explorer" })
-vim.keymap.set("n", "<leader>fc", function() vim.cmd(":NvimTreeFindFile") end, { desc = "focus on currently opened file" })
-
-vim.keymap.set("n", "gh", function() vim.cmd(":ClangdSwitchSourceHeader") end, { desc = "toggle header c file" })
-vim.keymap.set("n", "<leader>mj", function() vim.cmd(":make -j") end, { desc = "build project with -j" })
-vim.keymap.set("n", "<leader>mc", function() vim.cmd(":make -j1") end, { desc = "build project with -j1" })
-vim.keymap.set("n", "<leader>mp", function() vim.cmd(":make clean"); vim.cmd(":make -j") end, { desc = "make clean and then build" })
-vim.keymap.set('n', '<leader>ft', [[:%s/\s\+$//e<cr>]])
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -100,8 +64,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
+---- ========================================================================
+--                         ░█░░░█▀█░▀▀█░█░█░█▀▀░▀█▀░▀█▀
+--                         ░█░░░█▀█░▄▀░░░█░░█░█░░█░░░█░
+--                         ░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░░▀░
+---- ========================================================================
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+----  To check the current status of your plugins, run
+--    :Lazy
+--
+--  To update plugins you can run
+--    :Lazy update
+--
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -112,39 +86,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-local function gen_doxygen()
-	local line = vim.api.nvim_get_current_line()
-	local out = vim.system({"/home/lm-/.vim/tools/print-function-def-doxygen.sh", line }):wait()
-	-- nvim_put cannot into newlines, it requires table and each element in
-	-- table will be printed in new line, so we gotta split stdout to table
-	-- by new line character
-	local result = {};
-	for l in out.stdout.gmatch(out.stdout .. "\n", "(.-)\n") do
-		table.insert(result, l);
-	end
-	vim.api.nvim_put(result, "l", false, true)
-end
-vim.keymap.set("n", "<leader>fd", gen_doxygen)
-
-local function eq_text(width)
-	local wsave = vim.opt.textwidth
-	vim.opt.textwidth = width
-	vim.cmd('normal gw')
-	vim.opt.textwidth = wsave
-end
-vim.keymap.set("v", "<leader>el", function() eq_text(76) end, { desc = "equalize text to 76 width" })
-vim.keymap.set("v", "<leader>en", function() eq_text(67) end, { desc = "equalize text to 67 width" })
-vim.keymap.set("v", "<leader>es", function() eq_text(50) end, { desc = "equalize text to 50 width" })
-
--- local smart_tab = require("user.plugins.smart-tab")
--- vim.keymap.set("i", "<S-TAB>", "<TAB>")
--- vim.keymap.set("i", "<TAB>", smart_tab.smart_tab)
---  To check the current status of your plugins, run
---    :Lazy
---
---  To update plugins you can run
---    :Lazy update
---
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
@@ -152,7 +93,7 @@ require("lazy").setup({
 	{ "zootedb0t/citruszest.nvim", lazy = false, priority = 1000, },
 	{ "kdheepak/monochrome.nvim", lazy = false, priority = 1000, },
 	{ "tibabit/vim-templates", lazy = false, priority = 1000 },
-	{ "phaazon/hop.nvim", lazy = false, priority = 1000 },
+	{ "smoka7/hop.nvim", lazy = false, priority = 1000 },
 	{ 'onsails/lspkind.nvim', lazy = false, priority = 1000 },
 
 	{ import = 'user.plugins' },
@@ -178,8 +119,14 @@ require("lazy").setup({
 	},
 })
 
-require'hop'.setup()
-vim.api.nvim_set_keymap("n", "<Leader>b", "<cmd>HopWordBC<CR>", {noremap=true})
-vim.api.nvim_set_keymap("n", "<Leader>w", "<cmd>HopWordAC<CR>", {noremap=true})
-vim.api.nvim_set_keymap("n", "<Leader>j", "<cmd>HopLineAC<CR>", {noremap=true})
-vim.api.nvim_set_keymap("n", "<Leader>k", "<cmd>HopLineBC<CR>", {noremap=true})
+-- easy motion like movement
+require'hop'.setup({ keys = 'arstwfpzxcd/.,hyuloien'  })
+require('mini.sessions').setup({ autoread = true })
+
+---- ========================================================================
+--                         ░▀█▀░█▄█░█▀█░█▀█░█▀▄░▀█▀░█▀▀
+--                         ░░█░░█░█░█▀▀░█░█░█▀▄░░█░░▀▀█
+--                         ░▀▀▀░▀░▀░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀
+---- ========================================================================
+require("comments")
+require("keymaps")
