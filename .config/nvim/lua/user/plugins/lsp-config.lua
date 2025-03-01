@@ -34,6 +34,10 @@ return { -- Main LSP Configuration
 	},
 	opts = {
 		indent = { enable = true},
+		servers = {
+			clangd = {
+			},
+		},
 	},
 	config = function()
 		-- Brief aside: **What is LSP?**
@@ -81,14 +85,14 @@ return { -- Main LSP Configuration
 				-- Jump to the definition of the word under your cursor.
 				--  This is where a variable was first declared, or where a function is defined, etc.
 				--  To jump back, press <C-t>.
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				map("<leader>gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
 				-- Find references for the word under your cursor.
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
 				--  Useful when your language has ways of declaring types without an actual implementation.
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				map("<leader>gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
@@ -180,7 +184,17 @@ return { -- Main LSP Configuration
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
-			-- clangd = {},
+			clangd = {
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--completion-style=detailed",
+					"--function-arg-placeholders",
+					"--fallback-style=llvm",
+					"--header-insertion=never",
+				},
+			},
 			-- gopls = {},
 			-- pyright = {},
 			-- rust_analyzer = {},
