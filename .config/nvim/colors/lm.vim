@@ -33,7 +33,7 @@ let colors_name = "lm"
 :hi Debug           ctermfg=black
 :hi Pmenu           ctermfg=232        ctermbg=darkyellow
 :hi PmenuSel        ctermfg=235
-:hi NonText         ctermfg=232
+:hi NonText         ctermfg=235
 :hi Folded          ctermfg=darkblue    ctermbg=black
 :hi StatusLine      ctermfg=blue        ctermbg=magenta   cterm=none
 :hi StatusLineNC    ctermfg=grey        ctermbg=black   cterm=none
