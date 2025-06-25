@@ -68,20 +68,14 @@ export NMON=cmdlkn
 export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib"
 export PATH="/usr/bofc/bin:/home/lm-/.local/bin:$PATH:/usr/arm-nuttx-eabi/bin:/usr/local/bin:/home/lm-/.laptop-profiles"
 export QT_SELECT=5
-export XDG_CURRENT_DESKTOP=qt5ct
 export QT_QPA_PLATFORM_THEME=qt5ct
 export QT_QPA_PLATFORMTHEME=qt5ct
 export DISPLAY=:0
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 export KANBANFILE="${HOME}/.kanban.csv"
 export WINEPREFIX=~/.wine32
-export XDG_RUNTIME_DIR=/tmp/xdg-runtime-dir.$(whoami)
-export PULSE_RUNTIME_PATH=$XDG_RUNTIME_DIR/pulse
 export BROWSER="/usr/bofc/bin/open -n"
-export XDG_CONFIG_HOME=${HOME}/.config
 export EDITOR=nvim
-mkdir -p $XDG_RUNTIME_DIR
-chmod 700 $XDG_RUNTIME_DIR
 
 add_path /usr/bofc/bin
 add_path /home/lm-/.local/bin
@@ -163,7 +157,7 @@ alias prw='profile work'
 alias prs='profile standalone'
 alias gitl='GIT_DIR=.git-local git'
 
-function tcn() { TMUX= tmux -L${1} -f .tmux-nest.conf new -s ${1} }
+function tcn() { TMUX= tmux -L${1} -f ~/.tmux-nest.conf new -s ${1} }
 function tln() { TMUX= tmux -L${1} list-sessions }
 function tan() { TMUX= tmux -L${1} attach -t ${1} }
 
@@ -266,7 +260,7 @@ python_venv() {
 }
 
 autoload -U add-zsh-hook
-add-zsh-hook chpwd python_venv
+#add-zsh-hook chpwd python_venv
 
 hex-to-bin() {
 	n=$1
@@ -302,7 +296,7 @@ less_color()
 }
 alias less-color=less_color
 
-export LESS='-XRj.5 -x4'
+export LESS='-FXRj.5 -x4'
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_so=$'\e[1;4;41m'
@@ -326,7 +320,18 @@ tabs 4 &>/dev/null
 [ ! -f ~/.p10k.zsh ] || source ~/.p10k.zsh
 [ ! -f ~/.powerlevel10k/powerlevel10k.zsh-theme ] || source ~/.powerlevel10k/powerlevel10k.zsh-theme
 [ ! -f ~/.zsh-fzf-history-search/zsh-fzf-history-search.zsh ] || source ~/.zsh-fzf-history-search/zsh-fzf-history-search.zsh
+
+# zinit plugin manager
+source "$HOME/.zinit/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit wait lucid for MichaelAquilina/zsh-autoswitch-virtualenv
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light MichaelAquilina/zsh-auto-notify
+
 # source machine custom file, could be used to override some aliases
 # (like ls --colors which will not work on bsd) or do system specific
 # stuff.
 [ ! -f ~/.custom.zsh ] || source ~/.custom.zsh
+
