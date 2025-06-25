@@ -27,6 +27,7 @@ files="
 .dialogrc
 .zsh-autosuggestions
 .gitconfig
+.zinit
 "
 
 # https://git-scm.com/docs/git-pull#_bugs
