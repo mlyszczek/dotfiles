@@ -53,6 +53,7 @@ vim.keymap.set("n", "<leader>ccF", function() local text = vim.fn.input("Text: "
 vim.keymap.set("n", "<leader>ccf", function() local text = vim.fn.input("Text: "); comments.gen_figlet(text, "future") end, { desc = "smol figlet comment" })
 
 vim.keymap.set('n', '<leader>ft', [[:%s/\s\+$//e<cr>]], { desc = "[F]ormat [T]rim whitespaces" })
+vim.keymap.set('n', '<leader>fl', function() vim.lsp.buf.format() end, { desc = "[F]ormat [L]SP" })
 vim.keymap.set("v", "<leader>fel", function() eq_text(76) end, { desc = "[F]ormat [E]qualize [L]ong 76 width" })
 vim.keymap.set("v", "<leader>fen", function() eq_text(67) end, { desc = "[F]ormat [E]qualize [N]orm 67 width" })
 vim.keymap.set("v", "<leader>fes", function() eq_text(50) end, { desc = "[F]ormat [E]qualize [S]hrt 50 width" })
