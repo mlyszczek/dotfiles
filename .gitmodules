@@ -19,3 +19,6 @@
 [submodule ".zsh-fzf-history-search"]
 	path = .zsh-fzf-history-search
 	url = https://github.com/joshskidmore/zsh-fzf-history-search.git
+[submodule ".zinit"]
+	path = .zinit
+	url = https://github.com/zdharma-continuum/zinit.git
