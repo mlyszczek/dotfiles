@@ -3,12 +3,16 @@
 cd $(dirname $0)
 git pull -q
 
-cd .powerlevel10k
-git checkout -q origin/master
-git pull -q origin master
-cd ..
+for d in .powerlevel10k .zsh-autosuggestions; do
+	cd $d
+	git checkout -q origin/master
+	git pull -q origin master
+	cd ..
+done
 
-cd .zsh-autosuggestions
-git checkout -q origin/master
-git pull -q origin master
-cd ..
+for d in .zinit; do
+	cd $d
+	git checkout -q origin/main
+	git pull -q origin main
+	cd ..
+done
