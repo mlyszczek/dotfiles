@@ -36,6 +36,9 @@ vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
 vim.cmd("let g:doxygen_enhanced_color=1")
 
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+
 vim.opt.cindent = true -- enable c code auto indent
 vim.opt.cinoptions = ":0,=s,l1,(s,U1,m1"
 
@@ -47,6 +50,8 @@ vim.cmd("set notermguicolors")
 
 vim.cmd("let g:tmpl_author_name='Michał Łyszczek'")
 vim.cmd("let g:tmpl_author_email='michal.lyszczek@bofc.pl'")
+vim.cmd("let g:c_syntax_for_h = 1")
+vim.cmd("let g:c_no_curly_error = 1")
 
 -- Set <space> as the leader key
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
