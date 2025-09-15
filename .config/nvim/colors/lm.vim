@@ -1,3 +1,4 @@
+" put cursor and type :Inspect to learn what color group that is
 :set background=dark
 :highlight clear
 hi clear
@@ -8,7 +9,7 @@ let colors_name = "lm"
 :hi clear Normal
 :hi SpecialKey      ctermfg=darkgrey
 :hi Statement       ctermfg=yellow
-:hi Keyword         ctermfg=cyan        cterm=bold
+:hi Keyword         ctermfg=yellow      cterm=bold
 :hi Label           ctermfg=cyan        cterm=bold
 :hi Visual                              cterm=reverse
 :hi String          ctermfg=red         cterm=bold
@@ -43,20 +44,21 @@ let colors_name = "lm"
 :hi DiffDelete      cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 :hi DiffChange      cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 :hi DiffText        cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
-:hi ColorColumn         ctermfg=red         ctermbg=red
+:hi ColorColumn     ctermbg=gray ctermfg=234
 
-:hi doxygenComment ctermfg=LightRed guifg=LightRed
-:hi doxygenBrief cterm=bold ctermfg=Cyan ctermbg=black guifg=LightBlue gui=Bold,Italic
-:hi doxygenBody ctermfg=Cyan guifg=LightBlue
-:hi doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=Red guifg=firebrick3 gui=bold
-:hi doxygenBOther cterm=bold ctermfg=Magenta guifg=#aa50aa gui=bold
-:hi doxygenParam ctermfg=red guifg=LightGray
-:hi doxygenParamName cterm=italic ctermfg=magenta guifg=LightBlue gui=italic,bold
-:hi doxygenSpecialOnelineDesc cterm=bold ctermfg=LightCyan guifg=LightCyan gui=bold
-:hi doxygenSpecialHeading cterm=bold ctermfg=LightBlue guifg=LightBlue gui=bold
-:hi doxygenPrev ctermfg=LightGreen guifg=LightGreen
+:hi @doxygenComment ctermfg=LightRed guifg=LightRed
+:hi @doxygenBrief cterm=bold ctermfg=Cyan ctermbg=black guifg=LightBlue gui=Bold,Italic
+:hi @doxygenBody ctermfg=Cyan guifg=LightBlue
+:hi @doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=Red guifg=firebrick3 gui=bold
+:hi @doxygenBOther cterm=bold ctermfg=Magenta guifg=#aa50aa gui=bold
+:hi @doxygenParam ctermfg=red guifg=LightGray
+:hi @doxygenParamName cterm=italic ctermfg=magenta guifg=LightBlue gui=italic,bold
+:hi @doxygenSpecialOnelineDesc cterm=bold ctermfg=LightCyan guifg=LightCyan gui=bold
+:hi @doxygenSpecialHeading cterm=bold ctermfg=LightBlue guifg=LightBlue gui=bold
+:hi @doxygenPrev ctermfg=LightGreen guifg=LightGreen
 
 :hi @comment.documentation.c ctermfg=darkgrey
+":hi @comment.documentation.c ctermfg=DarkCyan guifg=LightBlue
 :hi @keyword.doxygen ctermfg=red 
 :hi @variable.doxygen cterm=italic ctermfg=magenta
 
@@ -65,3 +67,4 @@ let colors_name = "lm"
 
 
 :hi LspReferenceText  ctermbg=232
+
