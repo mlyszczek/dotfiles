@@ -76,6 +76,7 @@ export KANBANFILE="${HOME}/.kanban.csv"
 export WINEPREFIX=~/.wine32
 export BROWSER="/usr/bofc/bin/open -n"
 export EDITOR=nvim
+export GOPATH="$HOME/.local/go"
 
 add_path /usr/bofc/bin
 add_path /home/lm-/.local/bin
