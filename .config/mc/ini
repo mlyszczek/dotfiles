@@ -100,7 +100,7 @@ menubar_visible=false
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=149
+left_panel_size=147
 horizontal_equal=true
 top_panel_size=16
 
@@ -174,7 +174,7 @@ ignore_dirs=
 complete=\\eOk
 
 [Panelize]
-Znajdź odrzuty po łataniu=find . -name \\*.rej -print
-Znajdź pliki *.orig po łataniu=find . -name \\*.orig -print
 Znajdź programy SUID i SGID=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
 Zmodyfikowane pliki git=git ls-files --modified
+Znajdź pliki *.orig po łataniu=find . -name \\*.orig -print
+Znajdź odrzuty po łataniu=find . -name \\*.rej -print
