@@ -73,6 +73,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				},
 			},
 			defaults = {
+				layout_strategy = 'flex',
+				layout_config = {
+					flex = {
+						width = 0.9,
+						flip_columns = 200,
+					},
+					height = 0.95,
+				},
 				file_ignore_patterns = {
 					"cscope.out",
 					"%.o",
@@ -87,7 +95,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					'.gcno$',
 					'.o$',
 					'.plist$',
-					'.in$',
 					'.log$',
 					'.trs$',
 					'.tar$',
@@ -138,6 +145,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
+		vim.keymap.set("n", "<leader>sj", builtin.jumplist, { desc = "[S]earch [J]umplist" })
+		vim.keymap.set("n", "<leader>s?", builtin.builtin, { desc = "[S]earch [?]list-all" })
 
 		-- Slightly advanced example of overriding default behavior and theme
 		vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find , { desc = "[/] Fuzzily search in current buffer" })
