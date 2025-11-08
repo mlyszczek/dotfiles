@@ -135,3 +135,4 @@ require('mini.sessions').setup({ autoread = true })
 ---- ========================================================================
 require("comments")
 require("keymaps")
+require("func_border")
