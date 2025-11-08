@@ -183,6 +183,7 @@ return { -- Main LSP Configuration
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+		-- this shit won't work, edit custom script at ~/.local/share/nvim/mason/bin/clangd
 		local servers = {
 			clangd = {
 				cmd = {
@@ -190,7 +191,6 @@ return { -- Main LSP Configuration
 					"--background-index",
 					"--clang-tidy",
 					"--completion-style=detailed",
-					"--function-arg-placeholders",
 					"--fallback-style=llvm",
 					"--header-insertion=never",
 				},
