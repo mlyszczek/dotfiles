@@ -58,7 +58,7 @@ vim.keymap.set("v", "<leader>fel", function() eq_text(76) end, { desc = "[F]orma
 vim.keymap.set("v", "<leader>fen", function() eq_text(67) end, { desc = "[F]ormat [E]qualize [N]orm 67 width" })
 vim.keymap.set("v", "<leader>fes", function() eq_text(50) end, { desc = "[F]ormat [E]qualize [S]hrt 50 width" })
 
-vim.keymap.set("n", "<leader>gh", function() vim.cmd(":ClangdSwitchSourceHeader") end, { desc = "[G]oto [H]eader (and back)" })
+vim.keymap.set("n", "<leader>gh", function() vim.cmd(":LspClangdSwitchSourceHeader") end, { desc = "[G]oto [H]eader (and back)" })
 vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>HopWordAC<CR>", {desc = "Easy Motion Right", noremap=true})
 vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>HopWordBC<CR>", {desc = "Easy Motion Left", noremap=true})
 vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>HopLineAC<CR>", {desc = "Easy Motion Down", noremap=true})
