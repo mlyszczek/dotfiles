@@ -4,3 +4,5 @@
 .vim/whitelist.vim
 *.swo
 .config/nvim/lazy-lock.json
+.tmux/resurrect/
+.config/nvim/spell/
