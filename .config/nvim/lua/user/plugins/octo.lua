@@ -1,5 +1,6 @@
 return {
 	'pwntester/octo.nvim',
+	enabled = function() return vim.fn.hostname() == "hex" end,
 	requires = {
 		'nvim-lua/plenary.nvim',
 		'nvim-telescope/telescope.nvim',
