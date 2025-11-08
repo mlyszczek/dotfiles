@@ -329,6 +329,9 @@ autoload -Uz _zinit
 
 zinit wait lucid for MichaelAquilina/zsh-autoswitch-virtualenv
 zinit light zsh-users/zsh-syntax-highlighting
+
+export AUTO_NOTIFY_CANCEL_ON_SIGINT=1
+export AUTO_NOTIFY_IGNORE=("docker" "man" "sleep" "twister")
 zinit light MichaelAquilina/zsh-auto-notify
 
 # source machine custom file, could be used to override some aliases
