@@ -1,5 +1,6 @@
 return {
 	{
+		enabled = function() return vim.fn.hostname() == "hex" end,
 		"lowitea/aw-watcher.nvim",
 		opts = { -- required, but can be empty table: {}
 			-- add any options here
