@@ -30,6 +30,8 @@ files="
 .zinit
 .gdb
 .gdbinit.d
+.gdbinit-dashboard
+.gdbinit
 "
 
 # https://git-scm.com/docs/git-pull#_bugs
