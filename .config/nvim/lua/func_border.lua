@@ -21,8 +21,8 @@ function M.render_borders()
 	for _, node in query:iter_captures(root, bufnr, 0, -1) do
 		local start_row, _, end_row, _ = node:range()
 		local line_top = vim.api.nvim_buf_get_lines(bufnr, start_row -1, start_row, false)[1] or ""
+		local line_bot = vim.api.nvim_buf_get_lines(bufnr, end_row + 1, end_row + 2, false)[1] or ""
 		local width = 80
-		local border_bot = "{ " .. string.rep("─", width - 2)
 
 		local border_top = ""
 		if (string.len(line_top) == 0) then
@@ -38,7 +38,11 @@ function M.render_borders()
 				virt_text_pos = "overlay",
 			})
 		end
-		
+
+		local border_bot = ""
+		if (line_bot == "{") then
+			border_bot = "{ " .. string.rep("─", width - 2)
+		end
 		vim.api.nvim_buf_set_extmark(bufnr, ns, end_row + 1, 0, {
 			virt_text = {{border_bot, "Comment"}},
 			virt_text_pos = "overlay",
