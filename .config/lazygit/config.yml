@@ -1,10 +1,38 @@
-git: 
-    autoStageResolvedConflicts: false
-    paging:
-        colorArg: always
-        pager: delta --dark --paging=never --syntax-theme base16-256 -s
-    branchLogCmd: "git log --graph --abbrev-commit --decorate --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)'\'' {{branchName}} --"
-    commit:
-      signOff: true
+git:
+  autoStageResolvedConflicts: false
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --syntax-theme base16-256 -s
+  branchLogCmd: "git log --graph --abbrev-commit --decorate --format=format:'''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)''' {{branchName}} --"
+  commit:
+    signOff: true
 os:
-    editPreset: 'nvim'
+  editPreset: 'nvim'
+gui:
+  theme:
+    activeBorderColor:
+      - "#00ff00"
+      - bold
+    inactiveBorderColor:
+      - "#006600"
+    searchingActiveBorderColor:
+      - "#ff0000"
+      - bold
+    optionsTextColor:
+      - "#6272A4"
+    selectedLineBgColor:
+      - "#005500"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#6272A4"
+    cherryPickedCommitBgColor:
+      - "#8BE9FD"
+    markedBaseCommitFgColor:
+      - "#8BE9FD"
+    markedBaseCommitBgColor:
+      - "#F1FA8C"
+    unstagedChangesColor:
+      - "#FF0000"
+    defaultFgColor:
+      - "#aaaa00"
