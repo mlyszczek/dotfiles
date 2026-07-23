@@ -1,3 +1,6 @@
+# do not add lang specific options like -xc or else c++ files will break,
+# yeah, fuck c++, but money is money. Add those in local projects via
+# .clangd
 CompileFlags:
   Add:
     - '-DHAVE_CONFIG_H=1'
@@ -22,8 +25,6 @@ CompileFlags:
     - '-Itst'
     - '-Wall'
     - '-Wextra'
-    - '-std=c2x'
-    - '-xc'
 
 Diagnostics:
   MissingIncludes: None
