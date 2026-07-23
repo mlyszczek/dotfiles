@@ -73,7 +73,7 @@ return { -- Autocompletion
 			--
 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
 			mapping = cmp.mapping.preset.insert({
-				['<C-Space>'] = cmp.mapping.complete({}),
+				['<C-n>'] = cmp.mapping.complete({}),
 				['<C-e>'] = cmp.mapping.close(),
 				['<C-u>'] = cmp.mapping.scroll_docs(-4),
 				['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -151,6 +151,7 @@ return { -- Autocompletion
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "nvim_lsp_signature_help" },
 			},
 		})
 	end,
