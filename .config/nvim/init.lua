@@ -34,6 +34,7 @@ vim.opt.textwidth = 80 -- lines should not be longer than 80ch
 vim.opt.colorcolumn = "+1,+41" -- lines
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
+vim.opt.exrc = true
 vim.cmd("let g:doxygen_enhanced_color=1")
 
 vim.opt.spelllang = 'en_us'
@@ -52,6 +53,9 @@ vim.cmd("let g:tmpl_author_name='Michał Łyszczek'")
 vim.cmd("let g:tmpl_author_email='michal.lyszczek@bofc.pl'")
 vim.cmd("let g:c_syntax_for_h = 1")
 vim.cmd("let g:c_no_curly_error = 1")
+
+vim.opt.clipboard = {"unnamed", "unnamedplus"}
+vim.env.IN_NVIM = 'yes'
 
 -- Set <space> as the leader key
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -127,6 +131,28 @@ require("lazy").setup({
 -- easy motion like movement
 require'hop'.setup({ keys = 'arstwfpzxcd/.,hyuloien'  })
 require('mini.sessions').setup({ autoread = true })
+
+local terminal = require("toggleterm.terminal").Terminal
+local term_cmd = terminal:new({
+	cmd = "./.nvim-term-cmd || zsh",
+	direction = "float",
+	float_opts = {
+		border = "curved",
+	},
+--	-- function to run on opening the terminal
+--	on_open = function(term)
+--		vim.cmd("startinsert!")
+--		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+--	end,
+--	-- function to run on closing the terminal
+--	on_close = function(term)
+--		vim.cmd("startinsert!")
+--	end,
+})
+function _term_cmd_toggle()
+	term_cmd:toggle()
+end
+vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>lua _term_cmd_toggle()<CR>", {noremap = true, silent = true})
 
 ---- ========================================================================
 --                         ░▀█▀░█▄█░█▀█░█▀█░█▀▄░▀█▀░█▀▀
