@@ -28,6 +28,8 @@ files="
 .zsh-autosuggestions
 .gitconfig
 .zinit
+.gdb
+.gdbinit.d
 "
 
 # https://git-scm.com/docs/git-pull#_bugs
