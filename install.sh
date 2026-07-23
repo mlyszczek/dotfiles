@@ -32,6 +32,7 @@ files="
 .gdbinit.d
 .gdbinit-dashboard
 .gdbinit
+.inputrc
 "
 
 # https://git-scm.com/docs/git-pull#_bugs
