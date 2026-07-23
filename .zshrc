@@ -330,12 +330,18 @@ autoload -Uz _zinit
 zinit wait lucid for MichaelAquilina/zsh-autoswitch-virtualenv
 zinit light zsh-users/zsh-syntax-highlighting
 
-export AUTO_NOTIFY_CANCEL_ON_SIGINT=1
-export AUTO_NOTIFY_IGNORE=("docker" "man" "sleep" "twister")
-zinit light MichaelAquilina/zsh-auto-notify
+#export AUTO_NOTIFY_CANCEL_ON_SIGINT=1
+#export AUTO_NOTIFY_IGNORE=("docker" "man" "sleep" "twister")
+#zinit light MichaelAquilina/zsh-auto-notify
 
 # source machine custom file, could be used to override some aliases
 # (like ls --colors which will not work on bsd) or do system specific
 # stuff.
 [ ! -f ~/.custom.zsh ] || source ~/.custom.zsh
-
+if [ x$IN_NVIM = xyes ]; then
+	if [ -x ./.nvim-term-cmd ]; then
+		source ./.nvim-term-cmd
+	elif [ -x ../.nvim-term-cmd ]; then
+		source ../.nvim-term-cmd
+	fi
+fi
