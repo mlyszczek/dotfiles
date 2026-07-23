@@ -36,7 +36,7 @@ let colors_name = "lm"
 :hi PmenuSel        ctermfg=235
 :hi NonText         ctermfg=235
 :hi Folded          ctermfg=darkblue    ctermbg=black
-:hi StatusLine      ctermfg=blue        ctermbg=magenta   cterm=none
+:hi StatusLine      ctermfg=black       ctermbg=green     cterm=none
 :hi StatusLineNC    ctermfg=grey        ctermbg=black   cterm=none
 :hi VertSplit       ctermfg=black       ctermbg=darkgray
 :hi SignColumn      ctermfg=blue        ctermbg=black
@@ -65,6 +65,6 @@ let colors_name = "lm"
 :hi TelescopePreviewLine ctermbg=magenta
 :hi TelescopeSelection ctermbg=magenta
 
-
 :hi LspReferenceText  ctermbg=232
 
+:hi @string.documentation.python ctermfg=darkgrey
