@@ -1,5 +1,6 @@
 return {
 	'nvim-treesitter/nvim-treesitter-context',
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter'
 	},
