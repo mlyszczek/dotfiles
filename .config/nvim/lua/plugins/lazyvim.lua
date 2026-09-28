@@ -1,5 +1,6 @@
 return {
 	"kdheepak/lazygit.nvim",
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	cmd = {
 		"LazyGit",
 		"LazyGitConfig",
