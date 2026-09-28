@@ -67,10 +67,6 @@ export UNICODE_FONT=1
 export NMON=cmdlkn
 export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib"
 export PATH="/usr/bofc/bin:/home/lm-/.local/bin:$PATH:/usr/arm-nuttx-eabi/bin:/usr/local/bin:/home/lm-/.laptop-profiles"
-export QT_SELECT=5
-export QT_QPA_PLATFORM_THEME=qt5ct
-export QT_QPA_PLATFORMTHEME=qt5ct
-export DISPLAY=:0
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 export KANBANFILE="${HOME}/.kanban.csv"
 export WINEPREFIX=~/.wine32
