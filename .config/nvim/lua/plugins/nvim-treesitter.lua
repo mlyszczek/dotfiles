@@ -1,5 +1,6 @@
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	lazy = false,
 	build = ":TSUpdate",
 	branch = "main",
