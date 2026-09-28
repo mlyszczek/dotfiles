@@ -19,6 +19,7 @@ end
 
 return { -- Main LSP Configuration
 	"neovim/nvim-lspconfig",
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
 		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
