@@ -105,7 +105,7 @@ require("lazy").setup({
 	{ "smoka7/hop.nvim", lazy = false, priority = 1000 },
 	{ 'onsails/lspkind.nvim', lazy = false, priority = 1000 },
 
-	{ import = 'user.plugins' },
+	{ import = 'plugins' },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

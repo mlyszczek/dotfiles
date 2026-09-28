@@ -1,6 +1,6 @@
 return {
 	'pwntester/octo.nvim',
-	enabled = function() return vim.fn.hostname() == "hex" end,
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	requires = {
 		'nvim-lua/plenary.nvim',
 		'nvim-telescope/telescope.nvim',
@@ -62,7 +62,7 @@ return {
 			},
 			file_panel = {
 				size = 10,                             -- changed files panel rows
-				use_icons = true                       -- use web-devicons in file panel (if false, nvim-web-devicons does not need to be installed)
+				icons = true                           -- use web-devicons in file panel (if false, nvim-web-devicons does not need to be installed)
 			},
 			colors = {                               -- used for highlight groups (see Colors section below)
 				white = "#ffffff",

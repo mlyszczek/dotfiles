@@ -47,8 +47,14 @@ return { -- Autocompletion
 				end,
 			},
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+				completion = { -- rounded border; thin-style scrollbar
+					border = 'rounded',
+					scrollbar = '|',
+				},
+				documentation = { -- rounded border; thin-style scrollbar
+					border = 'rounded',
+					scrollbar = '║',
+				},
 			},
 			completion = { completeopt = "menu,menuone,noinsert" },
 			formatting = {
@@ -91,7 +97,7 @@ return { -- Autocompletion
 						-- elseif has_words_before() then
 						--     cmp.complete()
 					else
-						require("user.smart-tab").smart_tab()
+						require("smart-tab").smart_tab()
 					end
 				end, {"i", "s"}),
 
