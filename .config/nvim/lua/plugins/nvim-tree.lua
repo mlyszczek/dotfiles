@@ -15,6 +15,7 @@ end
 
 return {
 	"nvim-tree/nvim-tree.lua",
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		on_attach = my_on_attach,
