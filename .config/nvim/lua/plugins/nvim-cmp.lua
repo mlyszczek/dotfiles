@@ -1,5 +1,6 @@
 return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
+	enabled = function() return vim.fn.hostname() == "hex" and vim.uv.getuid() ~= 0 end,
 	event = "InsertEnter",
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
