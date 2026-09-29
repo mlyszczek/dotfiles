@@ -38,6 +38,8 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 --  Use CTRL+<hjkl> to switch between windows
 vim.keymap.set("n", "<C-Left>",  "<C-w>h", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-Up>",    "<C-w>k", { desc = "Move focus to the up window" })
+vim.keymap.set("n", "<C-Down>",  "<C-w>j", { desc = "Move focus to the down window" })
 
 
 vim.keymap.set("n", "<leader>amj", function() vim.cmd(":make -j") end, { desc = "[A]pp [M]ake [J]obs (-j)" })
