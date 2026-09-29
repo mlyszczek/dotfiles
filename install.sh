@@ -21,6 +21,7 @@ files="
 .config/clangd
 .config/lazygit
 .config/lsd
+.config/foot
 .ssh/config
 .local/share/mc/skins/lm-.ini
 .termcap
