@@ -20,6 +20,7 @@ files="
 .config/nvim
 .config/clangd
 .config/lazygit
+.config/kitty
 .config/lsd
 .config/foot
 .ssh/config
